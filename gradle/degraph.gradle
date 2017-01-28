@@ -1,0 +1,70 @@
+/*
+ * Copyright 2017 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "de.schauderhaft.degraph:degraph-check:0.1.4"
+    }
+}
+
+
+
+
+import de.schauderhaft.degraph.check.JCheck
+import static de.schauderhaft.degraph.check.JCheck.violationFree
+import static org.hamcrest.MatcherAssert.assertThat
+import static org.hamcrest.Matchers.is
+
+task degraph(type: DegraphCheck) {
+    reportFile = new File(buildDir, "reports/degraph/testResult.graphml")
+    classpath = sourceSets.main.output
+    println(classpath.asPath)
+}
+
+check.dependsOn degraph
+
+class DegraphCheck extends DefaultTask {
+
+    @InputFiles
+    FileCollection classpath
+
+    @OutputFile
+    File reportFile
+
+    @TaskAction
+    void runDegraph() {
+        def graph = JCheck.customClasspath(classpath.asPath)
+                      .printTo(reportFile.getPath())
+                      .noJars()
+                      .including("com.netflix.template.server.**")
+                          .including("com.netflix.template.client.**")
+                          .including("com.netflix.template.common.**")
+                      /*.withSlicing("module",
+                                   new NamedPattern(
+                                           "com.netflix.template.**", "template-server"),
+                                   new NamedPattern(
+                                           "com.netflix.template.**", "template-server"),
+                                   new NamedPattern(
+                                           "com.netflix.template.**", "template-client"),
+                                   "com.netflix.template.(*).**"
+        )*/
+        assertThat(graph, is(violationFree()))
+    }
+
+}

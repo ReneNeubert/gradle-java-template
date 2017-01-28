@@ -1,0 +1,4 @@
+rootProject.name = 'gradle-java-template'
+
+
+include 'gradle-java-template-core','gradle-java-template-api', 'documentation', 'example'

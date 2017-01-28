@@ -1,0 +1,112 @@
+buildscript {
+    repositories {
+        jcenter()
+        mavenLocal()
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    apply from: "${rootDir}/gradle/dependencies.gradle"
+    dependencies {
+        classpath gradle_plugins.values()
+    }
+}
+
+//apply plugin: "de.gliderpilot.semantic-release"
+apply plugin: 'com.github.ben-manes.versions'
+apply plugin: 'net.nemerosa.versioning'
+apply plugin: 'ru.vyarus.github-info'
+apply plugin: "org.sonarqube"
+
+github {
+    user "ReneNeubert"
+    license "Apache"
+}
+
+
+apply plugin: 'base'
+ext {
+    // Change if github project name is not the same as the root project's name
+    githubProjectName = rootProject.name
+
+
+    publishedModules = getPublishedProjects()
+
+    integTestModules = publishedModules.findAll {
+        (it.name in ["gradle-java-template-core"])
+    }
+
+    benchmarkModules = publishedModules.findAll {
+        (it.name in ["gradle-java-template-core"])
+    }
+
+    sonarQubeModules = publishedModules
+    generateManifest = false
+    publishing = true
+
+}
+
+
+allprojects {
+    group = "${reverseDomain}.${githubProjectName}"  // TEMPLATE: Set to organization of project
+    repositories {
+        jcenter()
+        mavenLocal()
+        mavenCentral()
+    }
+}
+
+apply plugin: "com.jfrog.artifactory"
+apply from: file('gradle/parameter.gradle')
+apply from: file('gradle/idea/idea.gradle')
+apply from: file('gradle/credentials.gradle')
+apply from: file('gradle/convention.gradle')
+apply from: file('gradle/conventionroot.gradle')
+apply from: file('gradle/sonarqube.gradle')
+
+
+subprojects { project ->
+
+    if (project.plugins.hasPlugin(JavaPlugin)) {
+        dependencies {
+            testCompile test_libraries.junit
+            //compile group: 'com.google.guava', name: 'guava', version: '21.0'
+        }
+    }
+}
+
+artifactoryPublish.skip true
+/*
+semanticRelease {
+    repo {
+        ghToken = project.ext.ghToken
+        releaseAsset aggregateJar, contentType: 'application/zip'
+        releaseAsset aggregateSourcesJar, label: 'the sources of the project', contentType:
+                'application/zip'
+        releaseAsset aggregateJavadocJar, label: 'the javadoc of the project', contentType:
+                'application/zip'
+    }
+}*/
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    options.compilerArgs << '-Xlint:all'
+}
+
+task wrapper(type: Wrapper) {
+    description = "Generates gradlew and gradlew.bat scripts"
+    gradleVersion = '3.3'
+    distributionUrl = "https://services.gradle.org/distributions/gradle-$gradleVersion-all.zip"
+}
+
+private List<Project> getPublishedProjects() {
+    List<Project> publishedModules = []
+    subprojects.each { project ->
+        if (project.name.indexOf(rootProject.name) != -1) {
+            publishedModules.add(project)
+            println("Find published module '$project.name' in root project '$rootProject.name'")
+        }
+    }
+    return publishedModules
+}
