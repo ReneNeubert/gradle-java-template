@@ -50,7 +50,7 @@ subprojects { project ->
 
                     publish.dependsOn getTasksByName("bintrayUpload", true)
                     publish.dependsOn getTasksByName("artifactoryPublish", true)
-                    
+
                     if (branch.matches(BRANCH_NAMES_PATTERN)) {
 
                         bintrayUpload.dependsOn rootProject.getTasksByName("sonarqube", true)
