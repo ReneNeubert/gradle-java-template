@@ -34,11 +34,39 @@ subprojects { project ->
         }
 
         if (project in publishedModules) {
-            //apply from: "$rootDir/gradle/release.gradle"
+
             apply from: "$rootDir/gradle/publishing.gradle"
             apply from: "$rootDir/gradle/bintray.gradle"
             apply from: "$rootDir/gradle/artifactory.gradle"
-            apply from: "$rootDir/gradle/check.gradle"
+            apply from: "$rootDir/gradle/code-quality.gradle"
+
+            String branch = versioning.info.branch
+
+            final BRANCH_NAMES_PATTERN = /^(?:release[-\/])?[0-9]+(\.[0-9]+)?\.x$|^(?:feature[-\/]|hotfix[-\/]|develop|master)?$/
+
+            afterEvaluate {
+                if (!isSnapshot) {
+
+                    publish.dependsOn getTasksByName("bintrayUpload", true)
+
+                    if (branch.matches(BRANCH_NAMES_PATTERN)) {
+
+                        bintrayUpload.dependsOn rootProject.getTasksByName("sonarqube", true)
+
+                    }
+
+                } else if ((System.getenv('TRAVIS_PULL_REQUEST') ?: "false") == "false") {
+
+                    publish.dependsOn getTasksByName("artifactoryPublish", true)
+
+                    if (branch.matches(BRANCH_NAMES_PATTERN)) {
+
+                        artifactoryPublish.dependsOn rootProject.getTasksByName("sonarqube", true)
+
+                    }
+                }
+
+            }
         }
     }
 }

@@ -14,33 +14,90 @@
  * limitations under the License.
  */
 
-if (project.plugins.hasPlugin(MavenPublishPlugin)) {
+task aggregateJavadocs(type: Javadoc) {
 
-    String branch = versioning.info.branch
+    title = "Softcake ${project.name} ${version} "
+    description = 'Aggregates Javadoc API documentation of all subprojects.'
+    group = JavaBasePlugin.DOCUMENTATION_GROUP
 
-    final BRANCH_NAMES_PATTERN = /^(?:release[-\/])?[0-9]+(\.[0-9]+)?\.x$|^(?:feature[-\/]|hotfix[-\/]|develop|master)?$/
+    dependsOn publishedModules.javadoc
 
-    afterEvaluate {
-        if (!isSnapshot) {
+    options.memberLevel = JavadocMemberLevel.PROTECTED
+    options.author = true
+    options.header = project.name
+    options.splitIndex = true
+    options.addStringOption('Xdoclint:html,syntax,reference', '-quiet')
+    options.jFlags '-Xmx1g'
+    options.links('http://docs.oracle.com/javase/8/docs/api/',
+            'http://typesafehub.github.com/config/latest/api/',
+            "http://google.github.io/guava/releases/21.0/api/docs/")
 
-            publish.dependsOn getTasksByName("bintrayUpload", true)
+    source publishedModules.javadoc.source
 
-            if (branch.matches(BRANCH_NAMES_PATTERN)) {
+    destinationDir rootProject.file("$rootProject.buildDir/docs/javadoc")
+    classpath = rootProject.files(publishedModules.javadoc.classpath)
 
-                bintrayUpload.dependsOn rootProject.getTasksByName("sonarqube", true)
+}
 
-            }
+task aggregateSourcesJar(type: Jar) {
+    classifier = 'sources'
+    def modules = publishedModules.findAll { subproject -> file("$subproject.projectDir").exists() }
+    dependsOn modules.sourceJar
+    from { modules.sourceSets.main.allSource }
+    extension 'jar'
+}
 
-        } else if ((System.getenv('TRAVIS_PULL_REQUEST') ?: "false") == "false") {
+task aggregateJavadocJar(type: Jar) {
+    classifier = 'javadoc'
+    dependsOn aggregateJavadocs
+    from aggregateJavadocs.destinationDir
+    classifier 'javadoc'
+    extension 'jar'
 
-            publish.dependsOn getTasksByName("artifactoryPublish", true)
+}
 
-            if (branch.matches(BRANCH_NAMES_PATTERN)) {
-
-                artifactoryPublish.dependsOn rootProject.getTasksByName("sonarqube", true)
-
-            }
-        }
+task aggregateJar(type: Jar) {
+    manifest {
+        attributes(
+                'Created-By': "${System.properties['java.version']} (" +
+                        "${System.properties['java.vendor']} " +
+                        "${System.properties['java.vm.version']})".toString(),
+                'Built-By': builtByValue,
+                'Build-Date': project.buildDate,
+                'Build-Time': project.buildTime,
+                'Build-Revision': buildRevision,
+                'Built-Gradle': gradle.gradleVersion,
+                'Specification-Title': project.name,
+                'Specification-Version': normalizeVersion(project.version),
+                'Specification-Vendor': 'softcake.org',
+                'Implementation-Title': project.name,
+                'Implementation-Version': project.version,
+                'Implementation-Vendor': 'softcake.org')
 
     }
+    extension 'jar'
+    dependsOn publishedModules.jar
+
+    from publishedModules.sourceSets.main.output.classesDir
+    from publishedModules.sourceSets.main.output.resourcesDir
+
+}
+
+artifacts {
+    archives aggregateSourcesJar
+    archives aggregateJavadocJar
+    archives aggregateJar
+}
+
+tasks.withType(Jar) {
+    group 'Jars'
+    from(rootProject.projectDir) {
+        include 'LICENSE.md'
+        into 'META-INF'
+    }
+}
+
+task createAllJars {
+    group 'Jars'
+    dependsOn aggregateJar, aggregateJavadocJar, aggregateSourcesJar
 }
