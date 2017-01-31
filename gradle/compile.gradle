@@ -22,13 +22,72 @@ task cleanRoot(type: Delete) {
     mustRunAfter "clean"
 }
 
-tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
-    options.compilerArgs << '-Xlint:all'
-}
-
 task wrapper(type: Wrapper) {
     description = "Generates gradlew and gradlew.bat scripts"
     gradleVersion = '3.3'
     distributionUrl = "https://services.gradle.org/distributions/gradle-$gradleVersion-all.zip"
+}
+
+allprojects {project ->
+    if (project.plugins.hasPlugin(JavaPlugin)) {
+
+        tasks.withType(JavaCompile) {
+            sourceCompatibility = 1.8
+            targetCompatibility = 1.8
+        }
+
+        tasks.withType(Test) { task ->
+            task.testLogging.exceptionFormat = 'full'
+        }
+
+        // See: http://docs.oracle.com/javase/8/docs/technotes/tools/windows/javac.html#BHCJCABJ
+        compileJava.options*.compilerArgs = [
+                '-Xlint:cast',
+                '-Xlint:classfile',
+                '-Xlint:deprecation',
+                '-Xlint:dep-ann',
+                '-Xlint:divzero',
+                '-Xlint:empty',
+                '-Xlint:fallthrough',
+                '-Xlint:finally',
+                '-Xlint:overrides',
+                '-Xlint:path',
+                '-Xlint:processing',
+                '-Xlint:rawtypes',
+                '-Xlint:serial',
+                '-Xlint:static',
+                '-Xlint:try',
+                '-Xlint:unchecked',
+                '-Xlint:varargs',
+                '-Xlint:-options',
+                '-Werror'
+        ]
+
+        // See: http://docs.oracle.com/javase/8/docs/technotes/tools/windows/javac.html#BHCJCABJ
+        compileTestJava.options*.compilerArgs = [
+                '-Xlint:cast',
+                '-Xlint:classfile',
+                '-Xlint:deprecation',
+                '-Xlint:dep-ann',
+                '-Xlint:divzero',
+                '-Xlint:empty',
+                '-Xlint:fallthrough',
+                '-Xlint:finally',
+                '-Xlint:path',
+                '-Xlint:processing',
+                '-Xlint:rawtypes',
+                '-Xlint:serial',
+                '-Xlint:static',
+                '-Xlint:try',
+                '-Xlint:unchecked',
+                '-Xlint:varargs',
+                '-Xlint:-options',
+                '-Xlint:-overrides'
+        ]
+
+        compileTestJava {
+            options.compilerArgs += '-parameters'
+        }
+
+    }
 }

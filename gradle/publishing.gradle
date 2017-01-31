@@ -15,8 +15,7 @@
  */
 
 afterEvaluate {
-    //TODO
-    // assert description: "Project $project.path is published, must have a description"
+    assert description: "Project $project.path is published, must have a description"
 }
 
 apply plugin: 'maven-publish'
@@ -28,11 +27,13 @@ apply plugin: 'nebula.maven-publish'
 javadoc {
     options.memberLevel = JavadocMemberLevel.PROTECTED
     options.author = true
-    options.header = project.name
+    afterEvaluate{
+        options.header = "${project.description} of ${rootProject.description}."
+    }
     options.addStringOption('Xdoclint:html,syntax,reference', '-quiet')
     options.links('http://docs.oracle.com/javase/8/docs/api/',
             'http://typesafehub.github.com/config/latest/api/',
-            "http://google.github.io/guava/releases/20.0/api/docs/")
+            'http://google.github.io/guava/releases/21.0/api/docs/')
 }
 
 tasks.withType(Jar) {
@@ -66,13 +67,12 @@ jar {
                 'Built-Gradle': gradle.gradleVersion,
                 'Specification-Title': project.name,
                 'Specification-Version': normalizeVersion(project.version),
-                'Specification-Vendor': 'softcake.org',
+                'Specification-Vendor': project.domain,
                 'Implementation-Title': project.name,
                 'Implementation-Version': project.version,
-                'Implementation-Vendor': 'softcake.org')
+                'Implementation-Vendor': project.domain)
 
     }
-    baseName = project.name
 }
 
 artifacts {
@@ -93,18 +93,6 @@ pom {
             roles {
                 role 'owner'
             }
-        }
-    }
-}
-
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
-
-            artifact sourceJar
-            artifact javadocJar
-
         }
     }
 }

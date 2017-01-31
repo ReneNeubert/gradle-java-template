@@ -38,17 +38,19 @@ ext {
     buildRevision = versioning.info.commit
     builtByValue = project.hasProperty("builtBy") ? project.builtBy : project.defaultBuiltBy
 
-    normalizeVersion = { versionLiteral ->
-        try {
-            (versionLiteral =~ /(\d+)\.(\d+)\.(\d+).*/)[0][1..3].join('.')
-        } catch (x) {
-            throw new GradleException(
-                    "Version '$versionLiteral' does not match version pattern, e.g." + " 5.0" +
-                            ".0-QUALIFIER")
-        }
-    }
+
 
     if (!javaVersion.java8Compatible) {
         throw new IllegalStateException("Must be built with Java 8 or higher")
+    }
+}
+
+ext.normalizeVersion = { versionLiteral ->
+    try {
+        (versionLiteral =~ /(\d+)\.(\d+)\.(\d+).*/)[0][1..3].join('.')
+    } catch (x) {
+        throw new GradleException(
+                "Version '$versionLiteral' does not match version pattern, e.g." + " 5.0" +
+                        ".0-QUALIFIER")
     }
 }

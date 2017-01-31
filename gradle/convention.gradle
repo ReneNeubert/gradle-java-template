@@ -39,6 +39,7 @@ subprojects { project ->
             apply from: "$rootDir/gradle/bintray.gradle"
             apply from: "$rootDir/gradle/artifactory.gradle"
             apply from: "$rootDir/gradle/code-quality.gradle"
+            apply from: "$rootDir/gradle/code-coverage.gradle"
 
             String branch = versioning.info.branch
 

@@ -20,7 +20,6 @@ bintrayUpload {
     onlyIf {
         publishing == true
     }
-
 }
 
 bintray {
@@ -28,14 +27,14 @@ bintray {
     key = bintrayKey
     dryRun = isSnapshot
     publish = false
-    publications = ['mavenJava']
+    publications = ['nebula']
 
     pkg {
         repo = project.bintrayRepo
         name = rootProject.name + "." + project.name
         userOrg = project.bintrayUserOrg
         desc = description
-        labels = ['softcake', 'test', 'java']
+        labels = ['softcake', 'template', 'java', 'gradle']
         publicDownloadNumbers = true
 
         //noinspection GroovyAssignabilityCheck
@@ -43,7 +42,7 @@ bintray {
             released = new Date()
             name = project.version.toString()
             vcsTag = project.version.toString()
-            attributes = ['gradle-plugin': ['org.softcake', project.group, project.name].join(':')]
+            attributes = ['softcake': [project.group, project.name].join(':')]
 
             gpg {
                 sign = true
@@ -63,3 +62,4 @@ bintray {
         }
     }
 }
+
