@@ -56,7 +56,7 @@ ext {
 
     sonarQubeModules = publishedModules
     generateManifest = false
-    publishing = true
+    publishArtifacts = true
 }
 
 allprojects {
