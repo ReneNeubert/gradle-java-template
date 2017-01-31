@@ -31,7 +31,7 @@ bintray {
 
     pkg {
         //repo = project.bintrayRepo
-        repo = rootPproject.name
+        repo = rootProject.name
         //name = rootProject.name + "." + project.name
         name = project.name
         userOrg = project.bintrayUserOrg
