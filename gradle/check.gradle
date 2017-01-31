@@ -48,7 +48,7 @@ findbugs {
 
 tasks.withType(FindBugs) {
     enabled = false //System.properties.containsKey('findbugs')
-    group = 'Findbugs'
+    group = "Code Quality"
     reports {
         xml.enabled = true
         html.enabled = false

@@ -14,14 +14,12 @@
  * limitations under the License.
  */
 
-
 subprojects { project ->
     status = rootProject.status
 
     if (project in publishedModules) {
         apply plugin: 'java'
         sourceCompatibility = 1.8
-
     }
 
     if (file("$projectDir").exists()) {
@@ -31,13 +29,11 @@ subprojects { project ->
         }
 
         if (project in integTestModules) {
-            apply plugin: "java"
             apply from: "$rootDir/gradle/integTest.gradle"
 
         }
 
         if (project in publishedModules) {
-
             apply from: "$rootDir/gradle/publishing.gradle"
             apply from: "$rootDir/gradle/bintray.gradle"
             apply from: "$rootDir/gradle/artifactory.gradle"
@@ -47,5 +43,3 @@ subprojects { project ->
         }
     }
 }
-
-

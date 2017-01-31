@@ -14,11 +14,20 @@
  * limitations under the License.
  */
 
-apply plugin: 'java'
-description = "Module api"
-dependencies {
-    compile libraries.guava
-    testCompile test_libraries.junit
-    //testCompile group: 'junit', name: 'junit', version: '4.12'
-    //compile group: 'com.google.guava', name: 'guava', version: '21.0'
+package org.softcake.one;
+
+import com.google.common.base.Preconditions;
+
+/**
+ * @author René Neubert
+ */
+public class Guava {
+
+    private String name;
+
+    public Guava(final String name) {
+
+        Preconditions.checkNotNull(name);
+        this.name = name;
+    }
 }

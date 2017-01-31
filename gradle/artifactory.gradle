@@ -20,7 +20,7 @@ apply plugin: 'com.jfrog.artifactory'
 
 artifactoryPublish {
     onlyIf {
-        false == true
+        publishing == true
     }
     dependsOn sourcesJar, javadocJar
 }

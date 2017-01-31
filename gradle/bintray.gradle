@@ -1,4 +1,3 @@
-
 /*
  * Copyright 2017 the original author or authors.
  *
@@ -17,6 +16,13 @@
 
 apply plugin: 'com.jfrog.bintray'
 
+bintrayUpload {
+    onlyIf {
+        publishing == true
+    }
+
+}
+
 bintray {
     user = bintrayUser
     key = bintrayKey
@@ -25,18 +31,12 @@ bintray {
     publications = ['mavenJava']
 
     pkg {
-        repo = 'softcake'
+        repo = project.bintrayRepo
         name = rootProject.name + "." + project.name
-        userOrg = 'softcake'
+        userOrg = project.bintrayUserOrg
         desc = description
-        websiteUrl = github.site
-        issueTrackerUrl = github.issues
-        vcsUrl = github.vcsUrl
-        licenses = ['Apache-2.0']
         labels = ['softcake', 'test', 'java']
         publicDownloadNumbers = true
-       // githubRepo = github.user + '/' + github.repository //Optional Github repository
-        //githubReleaseNotesFile = 'README.md' //Optional Github readme file
 
         //noinspection GroovyAssignabilityCheck
         version {

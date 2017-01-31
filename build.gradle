@@ -13,23 +13,14 @@ buildscript {
     }
 }
 
-//apply plugin: "de.gliderpilot.semantic-release"
-apply plugin: 'com.github.ben-manes.versions'
-apply plugin: 'net.nemerosa.versioning'
-apply plugin: 'ru.vyarus.github-info'
+apply plugin: "base"
+apply plugin: "de.gliderpilot.semantic-release"
+apply plugin: "com.github.ben-manes.versions"
+apply plugin: "net.nemerosa.versioning"
 apply plugin: "org.sonarqube"
+apply plugin: "com.jfrog.artifactory"
 
-github {
-    user "ReneNeubert"
-    license "Apache"
-}
-
-
-apply plugin: 'base'
 ext {
-    // Change if github project name is not the same as the root project's name
-    githubProjectName = rootProject.name
-
 
     publishedModules = getPublishedProjects()
 
@@ -47,17 +38,24 @@ ext {
 
 }
 
-
 allprojects {
-    group = "${reverseDomain}.${githubProjectName}"  // TEMPLATE: Set to organization of project
     repositories {
         jcenter()
         mavenLocal()
         mavenCentral()
     }
+    apply plugin: "ru.vyarus.github-info"
+
+    github {
+        user "ReneNeubert"
+        license "Apache"
+        repository rootProject.name
+    }
+    group = "${reverseDomain}.${github.repository}"
+
 }
 
-apply plugin: "com.jfrog.artifactory"
+
 apply from: file('gradle/parameter.gradle')
 apply from: file('gradle/idea/idea.gradle')
 apply from: file('gradle/credentials.gradle')
@@ -77,7 +75,7 @@ subprojects { project ->
 }
 
 artifactoryPublish.skip true
-/*
+
 semanticRelease {
     repo {
         ghToken = project.ext.ghToken
@@ -87,7 +85,7 @@ semanticRelease {
         releaseAsset aggregateJavadocJar, label: 'the javadoc of the project', contentType:
                 'application/zip'
     }
-}*/
+}
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'

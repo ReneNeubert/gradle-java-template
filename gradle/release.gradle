@@ -14,29 +14,32 @@
  * limitations under the License.
  */
 
-apply plugin: 'maven-publish'
+//apply plugin: 'maven-publish'
 
 String branch = versioning.info.branch
 
 final BRANCH_NAMES_PATTERN = /^(?:release[-\/])?[0-9]+(\.[0-9]+)?\.x$|^(?:feature[-\/]|hotfix[-\/]|develop|master)?$/
 
-if (!isSnapshot) {
+afterEvaluate{
+    if (!isSnapshot) {
 
-    publish.dependsOn getTasksByName("bintrayUpload", true)
+        publish.dependsOn getTasksByName("bintrayUpload", true)
 
-    if (branch.matches(BRANCH_NAMES_PATTERN)) {
+        if (branch.matches(BRANCH_NAMES_PATTERN)) {
 
-        bintrayUpload.dependsOn rootProject.getTasksByName("sonarqube", true)
+            bintrayUpload.dependsOn rootProject.getTasksByName("sonarqube", true)
 
+        }
+
+    } else if ((System.getenv('TRAVIS_PULL_REQUEST') ?: "false") == "false") {
+
+        publish.dependsOn getTasksByName("artifactoryPublish", true)
+
+        if (branch.matches(BRANCH_NAMES_PATTERN)) {
+
+            artifactoryPublish.dependsOn rootProject.getTasksByName("sonarqube", true)
+
+        }
     }
 
-} else if ((System.getenv('TRAVIS_PULL_REQUEST') ?: "false") == "false") {
-
-    publish.dependsOn getTasksByName("artifactoryPublish", true)
-
-    if (branch.matches(BRANCH_NAMES_PATTERN)) {
-
-        artifactoryPublish.dependsOn rootProject.getTasksByName("sonarqube", true)
-
-    }
 }

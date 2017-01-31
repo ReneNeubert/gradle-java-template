@@ -38,6 +38,7 @@
  * @see http://gradle.org/docs/current/javadoc/org/gradle/api/artifacts/dsl/DependencyHandler.html
  */
 ext {
+    gradle_version = '3.3'
     tool_versions =[
             checkstyle: '7.4',
             pmd: '5.5.1',
@@ -61,7 +62,8 @@ ext {
             versions            : '0.13.0',
             sonarqube           : '2.2.1',
             github_info         : '1.1.0',
-            git                 : '0.5.0',
+            pom_plugin          :  '1.1.0',
+            git                 : '1.6.0',
             //release             : '1.1.5',
             versioning          : '2.6.0',
             semantic_release    : '1.2.0',
@@ -91,6 +93,7 @@ ext {
             versions            : "com.github.ben-manes:gradle-versions-plugin:${plugin_versions.versions}",
             sonarqube           : "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:${plugin_versions.sonarqube}",
             github_info         : "ru.vyarus:gradle-github-info-plugin:${plugin_versions.github_info}",
+            pom_plugin          :  "ru.vyarus:gradle-pom-plugin:${plugin_versions.pom_plugin}",
             git                 : "org.ajoberstar:gradle-git:${plugin_versions.git}",
             //release             : "gradle-release:gradle-release:${plugin_versions.release}",
             versioning          : "net.nemerosa:versioning:${plugin_versions.versioning}",

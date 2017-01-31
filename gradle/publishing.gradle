@@ -18,8 +18,9 @@ afterEvaluate {
     //TODO
     // assert description: "Project $project.path is published, must have a description"
 }
+
 apply plugin: 'maven-publish'
-apply plugin: 'maven'
+apply plugin: 'ru.vyarus.pom'
 
 javadoc {
     options.memberLevel = JavadocMemberLevel.PROTECTED
@@ -94,95 +95,34 @@ artifacts {
     archives javadocJar
 }
 
-
-def pomConfig = {
-    delegate.name "${project.group}:${project.name}"
-    delegate.description "Module \"${project.name}\" of softcake gradle template."
-    //delegate.url github.site
-    delegate.inceptionYear '2016'
-    delegate.packaging 'jar'
-    /*delegate.scm {
-        delegate.connection github.scmConnection
-        delegate.developerConnection github.scmConnection
-        delegate.url github.vcsUrl
-    }*/
-   /* delegate.issueManagement {
-        delegate.system 'GitHub'
-        delegate.url github.issues
-    }
-*/
-    /*delegate.licenses {
-        delegate.license {
-            delegate.url github.licenseUrl
-            delegate.name github.licenseName
-            delegate.distribution 'repo'
-        }
-    }*/
-
-    delegate.developers {
-        delegate.developer {
-            delegate.id 'softcake'
-            delegate.name 'Rene Neubert'
-            delegate.email 'rene.neubert@softcake.org'
-            delegate.roles {
-                delegate.role 'owner'
+pom {
+    name "${project.group}:${project.name}"
+    description "Module \"${project.name}\" of softcake ${rootProject.name}."
+    inceptionYear project.buildYear
+    packaging 'jar'
+    developers {
+        developer {
+           id 'softcake'
+            name 'Rene Neubert'
+            email 'rene.neubert@softcake.org'
+            roles {
+                role 'owner'
             }
         }
     }
 }
-
-
 
 publishing {
     publications {
         mavenJava(MavenPublication) {
             from components.java
-           // groupId project.group + "." + project.name
-           // artifactId project.name
 
-            artifact sourcesJar {
-                classifier "sources"
-            }
-
-            artifact javadocJar {
-                classifier "javadoc"
-            }
-            pom.withXml {
-                asNode().children().last() + pomConfig
-
-                asNode().dependencies.'*'.findAll() {
-                    println(it.artifactId)
-                    it.scope.text() == 'runtime' && project.configurations.compile.allDependencies.
-                            find {dep ->
-                                println(dep.name + ' ' + it.artifactId.text())
-                                dep.name == it.artifactId.text()
-                            }
-                }.each() {
-                    it.scope*.value = 'compile'
-                }
-            }
-
-            /* pom.withXml {
-                asNode().children().last() + pomConfig
-                for (dep in configurations.compile.resolvedConfiguration
-                .firstLevelModuleDependencies) {
-                    asNode().dependencies[0].dependency.find {
-                        it.artifactId[0].text() == dep.moduleName && it.groupId[0].text() == dep
-                        .moduleGroup
-                    }?.scope[0]?.value = 'compile'
-                }
-
-            }*/
+            artifact sourcesJar
+            artifact javadocJar
 
         }
     }
 }
-
-
-    
-
-
-
 
 
 

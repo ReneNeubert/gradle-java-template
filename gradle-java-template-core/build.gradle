@@ -20,6 +20,7 @@ description = "Module core"
 dependencies {
     compile libraries.guava
     compile project(':gradle-java-template-api')
+    testCompile test_libraries.junit
 }
 
 
