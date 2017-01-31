@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 the original author or authors.
+ * Copyright 2017 softcake.org.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,9 +54,9 @@ task aggregateJavadocs(type: Javadoc) {
 task aggregateSourcesJar(type: Jar) {
     classifier = 'sources'
     def modules = publishedModules.findAll { subproject -> file("$subproject.projectDir").exists() }
-    dependsOn modules.sourcesJar
+    dependsOn modules.sourceJar
     from { modules.sourceSets.main.allSource }
-    from("LICENSE.txt", "README.md")
+    from("LICENSE.md", "README.md")
     classifier = 'sources'
     extension 'jar'
 }
@@ -94,7 +94,7 @@ task aggregateJar(type: Jar) {
 
     from publishedModules.sourceSets.main.output.classesDir
     from publishedModules.sourceSets.main.output.resourcesDir
-    from("LICENSE.txt", "README.md")
+    from("LICENSE.md", "README.md")
 
 }
 
@@ -107,7 +107,7 @@ artifacts {
 tasks.withType(Jar) {
     group 'Jars'
     from(rootProject.projectDir) {
-        include 'LICENSE.txt'
+        include 'LICENSE.md'
         into 'META-INF'
     }
 }
@@ -115,5 +115,4 @@ tasks.withType(Jar) {
 task createAllJars(type: Jar) {
     dependsOn aggregateJar, aggregateJavadocJar, aggregateSourcesJar
 }
-
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 the original author or authors.
+ * Copyright 2017 softcake.org.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,10 +22,10 @@ artifactoryPublish {
     onlyIf {
         publishing == true
     }
-    dependsOn sourcesJar, javadocJar
+    dependsOn sourceJar, javadocJar
 }
 
-rootProject.artifactory {
+artifactory {
     contextUrl = 'http://oss.jfrog.org/artifactory'
     publish {
         repository {

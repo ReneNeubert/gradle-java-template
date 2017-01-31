@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 the original author or authors.
+ * Copyright 2017 softcake.org.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +21,9 @@ afterEvaluate {
 
 apply plugin: 'maven-publish'
 apply plugin: 'ru.vyarus.pom'
+apply plugin: 'nebula.javadoc-jar'
+apply plugin: 'nebula.source-jar'
+apply plugin: 'nebula.maven-publish'
 
 javadoc {
     options.memberLevel = JavadocMemberLevel.PROTECTED
@@ -32,28 +35,10 @@ javadoc {
             "http://google.github.io/guava/releases/20.0/api/docs/")
 }
 
-task sourcesJar(type: Jar, dependsOn: classes) {
-    classifier = 'sources'
-    baseName = project.name
-    dependsOn tasks.classes
-    from sourceSets.main.allSource
-    classifier 'sources'
-    extension 'jar'
-}
-
-task javadocJar(type: Jar) {
-    classifier = 'javadoc'
-    baseName = project.name
-    dependsOn tasks.javadoc
-    from tasks.javadoc.destinationDir
-    classifier 'javadoc'
-    extension 'jar'
-}
-
 tasks.withType(Jar) {
     group 'Jars'
     from(rootProject.projectDir) {
-        include 'LICENSE.txt'
+        include 'LICENSE.md'
         into 'META-INF'
     }
 }
@@ -91,7 +76,7 @@ jar {
 }
 
 artifacts {
-    archives sourcesJar
+    archives sourceJar
     archives javadocJar
 }
 
@@ -117,7 +102,7 @@ publishing {
         mavenJava(MavenPublication) {
             from components.java
 
-            artifact sourcesJar
+            artifact sourceJar
             artifact javadocJar
 
         }

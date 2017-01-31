@@ -1,3 +1,19 @@
+/*
+ * Copyright 2017 softcake.org.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 buildscript {
     repositories {
         jcenter()
@@ -10,6 +26,8 @@ buildscript {
     apply from: "${rootDir}/gradle/dependencies.gradle"
     dependencies {
         classpath gradle_plugins.values()
+        classpath 'com.netflix.nebula:nebula-publishing-plugin:4.9.1'
+
     }
 }
 
@@ -74,7 +92,7 @@ subprojects { project ->
     }
 }
 
-artifactoryPublish.skip true
+
 
 semanticRelease {
     repo {
@@ -107,4 +125,41 @@ private List<Project> getPublishedProjects() {
         }
     }
     return publishedModules
+}
+apply plugin: 'com.jfrog.artifactory'
+//artifactoryPublish.skip true
+artifactoryPublish {
+    /*onlyIf {
+        publishing == true
+    }*/
+    dependsOn aggregateSourcesJar, aggregateJavadocJar
+}
+
+
+artifactory {
+    //contextUrl = 'http://oss.jfrog.org/artifactory'
+    contextUrl = 'http://localhost:8081/artifactory'
+
+    publish {
+        repository {
+            //repoKey = 'oss-snapshot-local'
+            repoKey = 'libs-snapshot-local'
+            /*username = 'nicejack' //bintrayUser
+            password = 'e364b4212817d9e7c7fd01014ae10e56a8282fe5' //bintrayKey*/
+            username = 'admin' //bintrayUser
+            password = 'password' //bintrayKey
+        }
+        //noinspection GroovyAssignabilityCheck
+        defaults {
+            publishConfigs('archives')
+            //publications('mavenJava')
+            publishPom = true // Publish generated POM files to Artifactory (true by default)
+        }
+    }
+    resolve {
+        repository {
+            repoKey = 'libs-snapshot-local'
+        }
+    }
+
 }
