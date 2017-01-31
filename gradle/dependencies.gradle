@@ -69,6 +69,7 @@ ext {
             semantic_release    : '1.2.0',
             degraph             : '0.1.4',
             buildscan           : '1.4',
+            nebula_publishing   : '4.9.1',
 
     ]
 
@@ -100,5 +101,6 @@ ext {
             semantic_release    : "gradle.plugin.de.gliderpilot.gradle.semantic-release:gradle-semantic-release-plugin:${plugin_versions.semantic_release}",
             degraph             : "de.schauderhaft.degraph:degraph-check:${plugin_versions.degraph}",
             buildscan           : "com.gradle:build-scan-plugin:${plugin_versions.buildscan}",
+            nebula_publishing   : "com.netflix.nebula:nebula-publishing-plugin:${plugin_versions.nebula_publishing}",
     ]
 }
