@@ -33,7 +33,7 @@ tasks.withType(Checkstyle) {
     group = qualityGroup
     reports {
         xml.enabled = true
-        html.enabled = true
+        html.enabled = !isCi
     }
 }
 
@@ -51,7 +51,7 @@ tasks.withType(FindBugs) {
     group = qualityGroup
     reports {
         xml.enabled = true
-        html.enabled = false
+        html.enabled = !isCi
     }
 }
 
@@ -69,6 +69,6 @@ tasks.withType(Pmd) {
     group = qualityGroup
     reports {
         xml.enabled = true
-        html.enabled = true
+        html.enabled = !isCi
     }
 }
