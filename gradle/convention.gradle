@@ -34,11 +34,10 @@ subprojects { project ->
         }
 
         if (project in publishedModules) {
+            //apply from: "$rootDir/gradle/release.gradle"
             apply from: "$rootDir/gradle/publishing.gradle"
             apply from: "$rootDir/gradle/bintray.gradle"
             apply from: "$rootDir/gradle/artifactory.gradle"
-            apply from: "$rootDir/gradle/release.gradle"
-            apply from: "$rootDir/gradle/degraph.gradle"
             apply from: "$rootDir/gradle/check.gradle"
         }
     }

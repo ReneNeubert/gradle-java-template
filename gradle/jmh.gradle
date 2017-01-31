@@ -16,7 +16,7 @@
 
 if (project in benchmarkModules) {
     apply plugin: 'idea'
-    apply plugin: 'com.github.johnrengelman.shadow'
+    //apply plugin: 'com.github.johnrengelman.shadow'
     apply plugin: 'me.champeau.gradle.jmh'
 
     configurations.jmh.dependencies.clear()
@@ -40,9 +40,9 @@ if (project in benchmarkModules) {
     }
 
 
-    jmhJar {
+   /* jmhJar {
         mergeServiceFiles()
-    }
+    }*/
 
     jmh {
         jmhVersion = tool_versions.jmh

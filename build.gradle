@@ -31,6 +31,7 @@ buildscript {
     }
 }
 
+
 apply plugin: "base"
 apply plugin: "de.gliderpilot.semantic-release"
 apply plugin: "com.github.ben-manes.versions"
@@ -56,7 +57,7 @@ ext {
 
 }
 
-allprojects {
+allprojects {project ->
     repositories {
         jcenter()
         mavenLocal()
@@ -70,6 +71,8 @@ allprojects {
         repository rootProject.name
     }
     group = "${reverseDomain}.${github.repository}"
+
+        apply from: "$rootDir/gradle/release.gradle"
 
 }
 
@@ -91,6 +94,7 @@ subprojects { project ->
         }
     }
 }
+
 
 
 
@@ -126,40 +130,5 @@ private List<Project> getPublishedProjects() {
     }
     return publishedModules
 }
-apply plugin: 'com.jfrog.artifactory'
-//artifactoryPublish.skip true
-artifactoryPublish {
-    /*onlyIf {
-        publishing == true
-    }*/
-    dependsOn aggregateSourcesJar, aggregateJavadocJar
-}
 
-
-artifactory {
-    //contextUrl = 'http://oss.jfrog.org/artifactory'
-    contextUrl = 'http://localhost:8081/artifactory'
-
-    publish {
-        repository {
-            //repoKey = 'oss-snapshot-local'
-            repoKey = 'libs-snapshot-local'
-            /*username = 'nicejack' //bintrayUser
-            password = 'e364b4212817d9e7c7fd01014ae10e56a8282fe5' //bintrayKey*/
-            username = 'admin' //bintrayUser
-            password = 'password' //bintrayKey
-        }
-        //noinspection GroovyAssignabilityCheck
-        defaults {
-            publishConfigs('archives')
-            //publications('mavenJava')
-            publishPom = true // Publish generated POM files to Artifactory (true by default)
-        }
-    }
-    resolve {
-        repository {
-            repoKey = 'libs-snapshot-local'
-        }
-    }
-
-}
+artifactoryPublish.skip true

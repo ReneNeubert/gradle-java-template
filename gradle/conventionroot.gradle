@@ -23,32 +23,28 @@ task cleanRoot(type: Delete) {
 }
 
 task aggregateJavadocs(type: Javadoc) {
-    group = "Documentation"
-    description = "Generates aggregated Javadocs"
-    title = "Softcake ${project.name} ${version} "
 
-    dependsOn {
-        publishedModules.javadocJar
-    }
+    title = "Softcake ${project.name} ${version} "
+    description = 'Aggregates Javadoc API documentation of all subprojects.'
+    group = JavaBasePlugin.DOCUMENTATION_GROUP
+
+    dependsOn publishedModules.javadoc
 
     options.memberLevel = JavadocMemberLevel.PROTECTED
     options.author = true
-    options.header = rootProject.description
+    options.header = project.name
     options.splitIndex = true
     options.addStringOption('Xdoclint:html,syntax,reference', '-quiet')
     options.jFlags '-Xmx1g'
     options.links('http://docs.oracle.com/javase/8/docs/api/',
             'http://typesafehub.github.com/config/latest/api/',
-            "http://google.github.io/guava/releases/20.0/api/docs/")
+            "http://google.github.io/guava/releases/21.0/api/docs/")
 
-    source publishedModules.sourceSets.main.allJava
+    source publishedModules.javadoc.source
 
-    maxMemory = "1024m"
-    destinationDir = new File(buildDir, "docs/javadoc")
+    destinationDir rootProject.file("$rootProject.buildDir/docs/javadoc")
+    classpath = rootProject.files(publishedModules.javadoc.classpath)
 
-    doFirst {
-        classpath = files(publishedModules.sourceSets.main.compileClasspath)
-    }
 }
 
 task aggregateSourcesJar(type: Jar) {
@@ -94,7 +90,6 @@ task aggregateJar(type: Jar) {
 
     from publishedModules.sourceSets.main.output.classesDir
     from publishedModules.sourceSets.main.output.resourcesDir
-    from("LICENSE.md", "README.md")
 
 }
 
@@ -112,7 +107,8 @@ tasks.withType(Jar) {
     }
 }
 
-task createAllJars(type: Jar) {
+task createAllJars {
+    group 'Jars'
     dependsOn aggregateJar, aggregateJavadocJar, aggregateSourcesJar
 }
 
