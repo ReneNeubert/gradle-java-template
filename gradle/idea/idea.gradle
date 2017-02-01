@@ -14,20 +14,22 @@
  * limitations under the License.
  */
 
+if (!isCi) {
+    apply plugin: "idea"
 
-apply plugin: "idea"
+    idea {
 
-idea {
+        project {
 
-    project {
+            jdkName "1.8"
+            languageLevel "1.8"
+            vcs = "Git"
 
-        jdkName "1.8"
-        languageLevel "1.8"
-        vcs = "Git"
-
-        createCopyright()
-        createCodeStyle()
+            createCopyright()
+            createCodeStyle()
+        }
     }
+
 }
 
 void createCopyright() {

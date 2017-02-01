@@ -16,33 +16,27 @@
 
 if (project in benchmarkModules) {
     apply plugin: 'idea'
-    //apply plugin: 'com.github.johnrengelman.shadow'
+    apply plugin: 'com.github.johnrengelman.shadow'
     apply plugin: 'me.champeau.gradle.jmh'
 
     configurations.jmh.dependencies.clear()
 
     idea.module {
         scopes.TEST.plus.add(configurations.jmh)
-       // scopes.PROVIDED.minus += configurations.compile
-
     }
 
     dependencies {
-
-            //jmh configurations.testCompile.allDependencies
-            compile files("$buildDir/jmh-generated-classes/")
-            //compile 'org.openjdk.jmh:jmh-core:1.17.3'
-
+        compile files("$buildDir/jmh-generated-classes/")
     }
+
     tasks.jmh {
         group = 'Benchmarks'
         description = 'Executes a Java microbenchmark'
     }
 
-
-   /* jmhJar {
-        mergeServiceFiles()
-    }*/
+     jmhJar {
+         mergeServiceFiles()
+     }
 
     jmh {
         jmhVersion = tool_versions.jmh
@@ -70,6 +64,9 @@ if (project in benchmarkModules) {
         fork = 1 //4
     }
 
-    build.dependsOn jmhCompileGeneratedClasses
+    if (!project.isCi) {
+        build.dependsOn jmhCompileGeneratedClasses
+    }
+
 }
 

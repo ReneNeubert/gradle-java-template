@@ -18,25 +18,27 @@ apply plugin: 'com.jfrog.bintray'
 
 bintrayUpload {
     onlyIf {
-        publishing == true
+        project.publishArtifacts == true
     }
 }
 
 bintray {
-    user = bintrayUser
-    key = bintrayKey
-    dryRun = isSnapshot
+    user = project.bintrayUser
+    key = project.bintrayKey
+    dryRun = project.isSnapshot
     publish = false
     publications = ['nebula']
 
     pkg {
-        repo = project.bintrayRepo
-        name = rootProject.name + "." + project.name
+        //repo = project.bintrayRepo
+        repo = rootProject.name
+        //name = rootProject.name + "." + project.name
+        name = project.name
         userOrg = project.bintrayUserOrg
         desc = description
         labels = ['softcake', 'template', 'java', 'gradle']
         publicDownloadNumbers = true
-
+        licenses = ['Apache-2.0']
         //noinspection GroovyAssignabilityCheck
         version {
             released = new Date()
@@ -50,10 +52,8 @@ bintray {
 
             mavenCentralSync {
                 sync = false
-                def ossUser = System.getenv("SONATYPE_USERNAME") ?:
-                        project.hasProperty("sonatypeOssUsername") ? project.sonatypeOssUsername : ''
-                def ossPass = System.getenv("SONATYPE_PASSWORD") ?:
-                        project.hasProperty("sonatypeOssPassword") ? project.sonatypeOssPassword : ''
+                def ossUser = project.sonatypeOssUsername
+                def ossPass = project.sonatypeOssPassword
                 user = ossUser
                 password = ossPass
                 close = '1'

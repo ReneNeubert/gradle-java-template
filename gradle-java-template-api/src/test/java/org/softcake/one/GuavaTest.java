@@ -14,36 +14,21 @@
  * limitations under the License.
  */
 
-apply plugin: 'com.jfrog.artifactory'
+package org.softcake.one;
 
-artifactoryPublish {
+import static org.hamcrest.core.Is.is;
 
-    onlyIf {
-        project.publishArtifacts == true
-    }
-    dependsOn sourceJar, javadocJar
-}
+import org.junit.Assert;
+import org.junit.Test;
 
-artifactory {
-    contextUrl = 'http://oss.jfrog.org/artifactory'
+/**
+ * @author René Neubert
+ */
+public class GuavaTest {
+    @Test
+    public void guava() throws Exception {
 
-    publish {
-
-        repository {
-            repoKey = project.isSnapshot ? 'oss-snapshot-local' : 'oss-release-local'
-            username = project.bintrayUser
-            password = project.bintrayKey
-        }
-
-        defaults {
-            publications('nebula')
-        }
-    }
-
-    resolve {
-        repository {
-            repoKey = 'libs-snapshot-local'
-        }
+        final Guava guava = new Guava("Name");
+        Assert.assertThat(1, is(1));
     }
 }
-

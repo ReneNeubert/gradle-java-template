@@ -43,10 +43,13 @@ ext {
             checkstyle: '7.4',
             pmd: '5.5.1',
             jmh:  '1.17.3',
+
     ]
 
     versions = [
-            guava: '21.0'
+            guava: '21.0',
+            error_prone_annotations: '2.0.15',
+            jsr305: '3.0.1',
     ]
     test_versions = [
             hamcrest: '2.0.0.0',
@@ -75,6 +78,8 @@ ext {
 
     libraries = [
             guava: "com.google.guava:guava:${versions.guava}",
+            error_prone_annotations: "com.google.errorprone:error_prone_annotations:${versions.error_prone_annotations}",
+            jsr305: "com.google.code.findbugs:jsr305:${versions.jsr305}",
     ]
 
     test_libraries = [
@@ -102,5 +107,6 @@ ext {
             degraph             : "de.schauderhaft.degraph:degraph-check:${plugin_versions.degraph}",
             buildscan           : "com.gradle:build-scan-plugin:${plugin_versions.buildscan}",
             nebula_publishing   : "com.netflix.nebula:nebula-publishing-plugin:${plugin_versions.nebula_publishing}",
+
     ]
 }

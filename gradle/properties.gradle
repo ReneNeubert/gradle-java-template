@@ -24,7 +24,6 @@ status = version.toString().endsWith("-SNAPSHOT") ? 'snapshot' : 'release'
 Date buildTimeAndDate = new Date()
 
 ext {
-
     isSnapshot = version.toString().endsWith("-SNAPSHOT")
     isTravis = System.getenv("TRAVIS") != null
     isCi = isTravis
@@ -38,11 +37,6 @@ ext {
     buildRevision = versioning.info.commit
     builtByValue = project.hasProperty("builtBy") ? project.builtBy : project.defaultBuiltBy
 
-
-
-    if (!javaVersion.java8Compatible) {
-        throw new IllegalStateException("Must be built with Java 8 or higher")
-    }
 }
 
 ext.normalizeVersion = { versionLiteral ->
@@ -53,4 +47,8 @@ ext.normalizeVersion = { versionLiteral ->
                 "Version '$versionLiteral' does not match version pattern, e.g." + " 5.0" +
                         ".0-QUALIFIER")
     }
+}
+
+if (!javaVersion.java8Compatible) {
+    throw new IllegalStateException("Must be built with Java 8 or higher")
 }

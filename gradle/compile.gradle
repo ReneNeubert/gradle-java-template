@@ -37,7 +37,16 @@ allprojects {project ->
         }
 
         tasks.withType(Test) { task ->
+            group = "verification"
             task.testLogging.exceptionFormat = 'full'
+            reports {
+                html.enabled = !project.isCi
+                junitXml.destination = "$buildDir/test-results"
+            }
+
+            jacoco {
+                enabled = true
+            }
         }
 
         // See: http://docs.oracle.com/javase/8/docs/technotes/tools/windows/javac.html#BHCJCABJ

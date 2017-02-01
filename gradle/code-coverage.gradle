@@ -23,13 +23,14 @@ jacocoTestReport {
     sourceDirectories = project.files(sourceSets.main.allSource.srcDirs)
     classDirectories = project.files(sourceSets.main.allSource.srcDirs)
     reports {
-        xml.enabled = !(project in integTestModules) && !isCi
+        xml.enabled = !(project in integTestModules) && !project.isCi
         csv.enabled = false
-        html.enabled = !(project in integTestModules) && !isCi
+        html.enabled = !(project in integTestModules) && !project.isCi
     }
 }
 
-jacocoTestReport.dependsOn check
+//jacocoTestReport.dependsOn check
+build.dependsOn jacocoTestReport
 
 if (project in integTestModules) {
 
@@ -58,9 +59,9 @@ if (project in integTestModules) {
         dependsOn jacocoTestReport, jacocoMerge
         mustRunAfter jacocoTestReport
         reports {
-            xml.enabled = !isCi
+            xml.enabled = !project.isCi
             csv.enabled = false
-            html.enabled = !isCi
+            html.enabled = !project.isCi
             html.destination = file("${reporting.baseDir}/jacoco/test/html")
             xml.destination = file("${reporting.baseDir}/jacoco/test/jacocoTestReport.xml")
         }
@@ -71,6 +72,7 @@ if (project in integTestModules) {
     build.dependsOn jacocoMergedReport
 
 }
+/*
 
 tasks.withType(Test) {
     group = "verification"
@@ -79,5 +81,6 @@ tasks.withType(Test) {
         enabled = true
     }
 }
+*/
 
 
