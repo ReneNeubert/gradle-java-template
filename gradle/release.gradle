@@ -15,12 +15,12 @@
  */
 
 task aggregateJavadocs(type: Javadoc) {
-
+    onlyIf {
+        !(project.isSnapshot && project.isCi)
+    }
     title = "Softcake ${project.name} ${version} "
     description = 'Aggregates Javadoc API documentation of all subprojects.'
     group = JavaBasePlugin.DOCUMENTATION_GROUP
-
-    dependsOn publishedModules.javadoc
 
     options.memberLevel = JavadocMemberLevel.PROTECTED
     options.author = true
@@ -32,6 +32,7 @@ task aggregateJavadocs(type: Javadoc) {
             'http://typesafehub.github.com/config/latest/api/',
             'http://google.github.io/guava/releases/21.0/api/docs/')
 
+    dependsOn publishedModules.javadoc
     source publishedModules.javadoc.source
     maxMemory = "1024m"
     destinationDir rootProject.file("$rootProject.buildDir/docs/javadoc")
@@ -62,13 +63,13 @@ task aggregateJar(type: Jar) {
                 'Created-By': "${System.properties['java.version']} (" +
                         "${System.properties['java.vendor']} " +
                         "${System.properties['java.vm.version']})".toString(),
-                'Built-By': builtByValue,
+                'Built-By': project.builtByValue,
                 'Build-Date': project.buildDate,
                 'Build-Time': project.buildTime,
-                'Build-Revision': buildRevision,
+                'Build-Revision': project.buildRevision,
                 'Built-Gradle': gradle.gradleVersion,
                 'Specification-Title': project.name,
-                'Specification-Version': normalizeVersion(project.version),
+                'Specification-Version': project.normalizeVersion(project.version),
                 'Specification-Vendor': project.domain,
                 'Implementation-Title': project.name,
                 'Implementation-Version': project.version,
@@ -84,16 +85,20 @@ task aggregateJar(type: Jar) {
 }
 
 artifacts {
+
     archives aggregateSourcesJar
     archives aggregateJavadocJar
     archives aggregateJar
 }
 
-tasks.withType(Jar) {
+tasks.withType(Jar) { task ->
     group 'Jars'
     from(rootProject.projectDir) {
         include 'LICENSE.md'
         into 'META-INF'
+    }
+    task.onlyIf {
+        !(project.isSnapshot && project.isCi)
     }
 }
 

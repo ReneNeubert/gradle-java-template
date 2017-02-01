@@ -78,10 +78,10 @@ allprojects {
 
 }
 
-
+apply from: file('gradle/credentials.gradle')
 apply from: file('gradle/properties.gradle')
 apply from: file('gradle/idea/idea.gradle')
-apply from: file('gradle/credentials.gradle')
+
 apply from: file('gradle/convention.gradle')
 apply from: file('gradle/compile.gradle')
 apply from: file('gradle/release.gradle')

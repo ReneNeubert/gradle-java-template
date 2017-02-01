@@ -18,6 +18,7 @@
 
 def configDir = new File("${rootDir}", 'config')
 def qualityGroup = "Code Quality"
+
 apply plugin: 'checkstyle'
 def checkstyleConfigDir = "$configDir/checkstyle"
 
@@ -32,8 +33,8 @@ tasks.withType(Checkstyle) {
     enabled = true //System.properties.containsKey('checkstyle')
     group = qualityGroup
     reports {
-        xml.enabled = !isCi
-        html.enabled = !isCi
+        xml.enabled = !project.isCi
+        html.enabled = !project.isCi
     }
 }
 
@@ -50,8 +51,8 @@ tasks.withType(FindBugs) {
     enabled = false //System.properties.containsKey('findbugs')
     group = qualityGroup
     reports {
-        xml.enabled = !isCi
-        html.enabled = !isCi
+        xml.enabled = !project.isCi
+        html.enabled = !project.isCi
     }
 }
 
@@ -68,7 +69,7 @@ tasks.withType(Pmd) {
     enabled = name.endsWith('Main') // && System.properties.containsKey('pmd')
     group = qualityGroup
     reports {
-        xml.enabled = !isCi
-        html.enabled = !isCi
+        xml.enabled = !project.isCi
+        html.enabled = !project.isCi
     }
 }

@@ -30,9 +30,9 @@ artifactory {
     publish {
 
         repository {
-            repoKey = isSnapshot ? 'oss-snapshot-local' : 'oss-release-local'
-            username = bintrayUser
-            password = bintrayKey
+            repoKey = project.isSnapshot ? 'oss-snapshot-local' : 'oss-release-local'
+            username = project.bintrayUser
+            password = project.bintrayKey
         }
 
         defaults {
