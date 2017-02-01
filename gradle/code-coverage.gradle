@@ -17,6 +17,7 @@
 apply plugin: 'jacoco'
 
 jacocoTestReport {
+    enabled = !(project in integTestModules)
     group = "Coverage reports"
     description = 'Generate Jacoco coverage reports after running tests.'
     additionalSourceDirs = project.files(sourceSets.main.allSource.srcDirs)
@@ -29,7 +30,8 @@ jacocoTestReport {
     }
 }
 
-jacocoTestReport.dependsOn check
+//jacocoTestReport.dependsOn check
+build.dependsOn jacocoTestReport
 
 if (project in integTestModules) {
 

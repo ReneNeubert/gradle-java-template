@@ -27,7 +27,7 @@ ext {
 
     isSnapshot = version.toString().endsWith("-SNAPSHOT")
     isTravis = System.getenv("TRAVIS") != null
-    isCi = isTravis
+    isCi = false //isTravis
     jvm = Jvm.current()
     javaVersion = JavaVersion.current()
     isWindows = org.gradle.internal.os.OperatingSystem.current().windows

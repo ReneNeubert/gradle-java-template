@@ -92,8 +92,11 @@ subprojects { project ->
 
     if (project.plugins.hasPlugin(JavaPlugin)) {
         dependencies {
+            provided libraries.jsr305
+            provided libraries.error_prone_annotations
             testCompile test_libraries.junit
             //compile group: 'com.google.guava', name: 'guava', version: '21.0'
+
         }
     }
 }
