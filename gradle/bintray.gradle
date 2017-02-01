@@ -18,7 +18,7 @@ apply plugin: 'com.jfrog.bintray'
 
 bintrayUpload {
     onlyIf {
-        publishArtifacts == true
+        project.publishArtifacts == true
     }
 }
 
