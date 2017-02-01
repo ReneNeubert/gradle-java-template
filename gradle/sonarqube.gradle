@@ -31,7 +31,7 @@ sonarqube {
         property "sonar.links.ci", 'https://travis-ci.org/' + github.user + '/' + github.repository
         property "sonar.links.homepage", github.site
         property "sonar.branch", versioning.info.branch
-        property "sonar.scm.disabled", true //TODO
+        property "sonar.scm.disabled", false //TODO
         property "sonar.jacoco.reportMissing.force.zero", true
     }
 }
