@@ -38,7 +38,7 @@ bintray {
         labels = ['softcake', 'template', 'java', 'gradle']
         publicDownloadNumbers = true
         licenses = ['Apache-2.0']
-        //noinspection GroovyAssignabilityCheck
+
         version {
             released = new Date()
             name = project.version.toString()
