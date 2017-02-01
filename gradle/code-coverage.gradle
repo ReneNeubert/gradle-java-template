@@ -29,7 +29,7 @@ jacocoTestReport {
     }
 }
 
-//jacocoTestReport.dependsOn check
+
 build.dependsOn jacocoTestReport
 
 if (project in integTestModules) {
