@@ -38,7 +38,6 @@ tasks.withType(Checkstyle) {
     }
 }
 
-
 apply plugin: 'findbugs'
 
 findbugs {
