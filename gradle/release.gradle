@@ -15,6 +15,7 @@
  */
 
 tasks.remove(uploadArchives)
+uploadArchives.enabled = false
 
 task aggregateJavadocs(type: Javadoc) {
     onlyIf {
