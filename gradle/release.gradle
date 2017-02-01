@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+tasks.remove(uploadArchives)
+
 task aggregateJavadocs(type: Javadoc) {
     onlyIf {
         !(project.isSnapshot && project.isCi)
@@ -83,13 +85,13 @@ task aggregateJar(type: Jar) {
     from publishedModules.sourceSets.main.output.resourcesDir
 
 }
-
+/*
 artifacts {
 
     archives aggregateSourcesJar
     archives aggregateJavadocJar
     archives aggregateJar
-}
+}*/
 
 tasks.withType(Jar) { task ->
     group 'Jars'
@@ -106,4 +108,3 @@ task createAllJars {
     group 'Jars'
     dependsOn aggregateJar, aggregateJavadocJar, aggregateSourcesJar
 }
-

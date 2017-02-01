@@ -30,9 +30,8 @@ bintray {
     publications = ['nebula']
 
     pkg {
-        //repo = project.bintrayRepo
+
         repo = rootProject.name
-        //name = rootProject.name + "." + project.name
         name = project.name
         userOrg = project.bintrayUserOrg
         desc = description

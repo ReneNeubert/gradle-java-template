@@ -72,15 +72,5 @@ if (project in integTestModules) {
     build.dependsOn jacocoMergedReport
 
 }
-/*
-
-tasks.withType(Test) {
-    group = "verification"
-    reports.junitXml.destination = "$buildDir/test-results"
-    jacoco {
-        enabled = true
-    }
-}
-*/
 
 

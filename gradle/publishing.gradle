@@ -24,6 +24,8 @@ apply plugin: 'nebula.javadoc-jar'
 apply plugin: 'nebula.source-jar'
 apply plugin: 'nebula.maven-publish'
 
+tasks.remove(uploadArchives)
+
 javadoc {
     options.memberLevel = JavadocMemberLevel.PROTECTED
     options.author = true
