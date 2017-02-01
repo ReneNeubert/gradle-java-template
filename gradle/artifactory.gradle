@@ -17,9 +17,10 @@
 apply plugin: 'com.jfrog.artifactory'
 
 artifactoryPublish {
-    /*onlyIf {
+    println("---------------------------" + publishArtifacts)
+    onlyIf {
         publishArtifacts == true
-    }*/
+    }
     dependsOn sourceJar, javadocJar
 }
 
