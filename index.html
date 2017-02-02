@@ -522,7 +522,7 @@ table.CodeRay td.code>pre{padding:0}
 <ul class="sectlevel1">
 <li><a href="#introduction">1. Introduction</a>
 <ul class="sectlevel2">
-<li><a href="#benefits_of_shadow">1.1. Benefits of Shadow</a></li>
+<li><a href="#benefits_of_project">1.1. Benefits of Project</a></li>
 <li><a href="#getting_started">1.2. Getting Started</a></li>
 <li><a href="#default_java_groovy_tasks">1.3. Default Java/Groovy Tasks</a></li>
 <li><a href="#shadowing_gradle_plugins">1.4. Shadowing Gradle Plugins</a></li>
@@ -593,55 +593,17 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect2">
-<h3 id="benefits_of_shadow">1.1. Benefits of Shadow</h3>
-<div class="paragraph">
-<p>Shadowing a project output has 2 major use cases:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Creating an <em>executable</em> JAR distribution</p>
-</li>
-<li>
-<p>Bundling and relocating common dependencies in libraries to avoid classpath conflicts</p>
-</li>
-</ol>
-</div>
+<h3 id="benefits_of_project">1.1. Benefits of Project</h3>
 <div class="sect3">
-<h4 id="executable_distributions">1.1.1. Executable Distributions</h4>
+<h4 id="chapter">1.1.1. chapter</h4>
 <div class="paragraph">
-<p>Executable distribution is the main use case for <em>application</em> developers.
-The goal of an executable distribution is a single file that can be deployed and executed/run in the runtime
-environment.
-In the case of Shadow, this is a single <em>uber</em> or <em>fat</em> JAR.
-The JAR file contains all the application code and dependent libraries to execute (not including the standard JVM
-libraries).
-The shadow JAR does <strong>not</strong> include the JRE itself.
-It must be available on the target system.</p>
-</div>
-<div class="paragraph">
-<p>Executable JARs contain a JAR MANIFEST that specifies the application Main Class.
-This allows the application to be started with a single command:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="bash">$ java -jar application-shadow.jar</code></pre>
-</div>
+<p>chapter chapter chapter</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="library_bundling">1.1.2. Library Bundling</h4>
+<h4 id="chapter_2">1.1.2. chapter</h4>
 <div class="paragraph">
-<p>Dependency bundling and relocation is the main use case for <em>library</em> authors.
-The goal of a bundled library is to create a pre-packaged dependency for other libraries or applications to utilize.
-Often in these scenarios, a library may contain a dependency that a downstream library or application also uses.
-In <em>some</em> cases, different versions of this common dependency can cause an issue in either the upstream library or
-the downstream application.
-These issues often manifest themselves as binary incompatibilities in either the library or application code.</p>
-</div>
-<div class="paragraph">
-<p>By utilizing Shadow&#8217;s ability to <em>relocate</em> the package names for dependencies, a library author can ensure that the
-library&#8217;s dependencies will not conflict with the same dependency being declared by the downstream application.</p>
+<p>chapter chapter chapter</p>
 </div>
 </div>
 </div>
