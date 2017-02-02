@@ -34,17 +34,6 @@ build.dependsOn jacocoTestReport
 
 if (project in integTestModules) {
 
-    task integTest(type: Test) {
-        group = "verification"
-        testClassesDir = sourceSets.integTest.output.classesDir
-        classpath = sourceSets.integTest.runtimeClasspath
-        outputs.upToDateWhen { false }
-        mustRunAfter test
-
-    }
-
-    check.dependsOn(integTest)
-
     task jacocoMerge(type: JacocoMerge) {
         executionData test, integTest
         onlyIf {

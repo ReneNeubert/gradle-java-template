@@ -47,3 +47,14 @@ idea {
     }
 }
 
+task integTest(type: Test) {
+    group = "verification"
+    testClassesDir = sourceSets.integTest.output.classesDir
+    classpath = sourceSets.integTest.runtimeClasspath
+    outputs.upToDateWhen { false }
+    mustRunAfter test
+
+}
+
+check.dependsOn(integTest)
+rootProject.tasks["sonarqube"].dependsOn check

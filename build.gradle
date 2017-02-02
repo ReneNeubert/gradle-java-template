@@ -81,7 +81,6 @@ allprojects {
 apply from: file('gradle/credentials.gradle')
 apply from: file('gradle/properties.gradle')
 apply from: file('gradle/idea/idea.gradle')
-
 apply from: file('gradle/convention.gradle')
 apply from: file('gradle/compile.gradle')
 apply from: file('gradle/release.gradle')
@@ -90,7 +89,7 @@ apply from: file('gradle/sonarqube.gradle')
 
 subprojects { project ->
 
-    if (project.plugins.hasPlugin(JavaPlugin)) {
+    if (project.plugins.hasPlugin(JavaPlugin) && file(project.projectDir).exists()) {
         dependencies {
             provided libraries.jsr305
             provided libraries.error_prone_annotations
