@@ -63,3 +63,11 @@ if (project in integTestModules) {
 }
 
 
+tasks.withType(Test) { task ->
+    group = "verification"
+    jacoco {
+        enabled = true
+    }
+}
+
+
