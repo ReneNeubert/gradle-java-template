@@ -36,8 +36,9 @@ asciidoctor {
         include 'index.adoc'
     }
     backends = ['html5', 'pdf']
+    outputDir "$rootProject.buildDir/asciidoc"
 
-    attributes toc: 'left',
+            attributes toc: 'left',
             'source-highlighter': 'coderay',
             icons: 'font',
             numbered: '',

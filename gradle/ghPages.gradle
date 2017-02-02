@@ -17,7 +17,7 @@
 apply plugin: "org.ajoberstar.github-pages"
 
 githubPages {
-    repoUri = 'https://github.com/ReneNeubertgradle-java-template.git'
+    repoUri = 'git@github.com:ReneNeubert/gradle-java-template.git'
     credentials {
         username = project.ext.ghToken
         password = ''
