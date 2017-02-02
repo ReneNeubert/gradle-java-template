@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.4">
-<meta name="author" content="John Engelman - @johnrengelman">
+<meta name="author" content="Rene Neubert - @softcake.org">
 <title>Shadow Plugin User Guide &amp; Examples</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -514,7 +514,7 @@ table.CodeRay td.code>pre{padding:0}
 <div id="header">
 <h1>Shadow Plugin User Guide &amp; Examples</h1>
 <div class="details">
-<span id="author" class="author">John Engelman - @johnrengelman</span><br>
+<span id="author" class="author">Rene Neubert - @softcake.org</span><br>
 <span id="revnumber">version 1.21.0-develop-SNAPSHOT</span>
 </div>
 <div id="toc" class="toc2">
@@ -524,20 +524,21 @@ table.CodeRay td.code>pre{padding:0}
 <ul class="sectlevel2">
 <li><a href="#benefits_of_project">1.1. Benefits of Project</a></li>
 <li><a href="#getting_started">1.2. Getting Started</a></li>
-<li><a href="#default_java_groovy_tasks">1.3. Default Java/Groovy Tasks</a></li>
-<li><a href="#shadowing_gradle_plugins">1.4. Shadowing Gradle Plugins</a></li>
+<li><a href="#chapter_chapter_chapter">1.3. chapter chapter chapter</a></li>
+<li><a href="#chapter_chapter_chapter_2">1.4. chapter chapter chapter</a></li>
 </ul>
 </li>
-<li><a href="#configuring_shadow">2. Configuring Shadow</a>
+<li><a href="#configuring_chapter">2. Configuring chapter</a>
 <ul class="sectlevel2">
-<li><a href="#configuring_output_name">2.1. Configuring Output Name</a></li>
-<li><a href="#configuring_the_runtime_classpath">2.2. Configuring the Runtime Classpath</a></li>
-<li><a href="#configuring_the_jar_manifest">2.3. Configuring the JAR Manifest</a></li>
-<li><a href="#filtering_shadow_jar_contents">2.4. Filtering Shadow Jar Contents</a></li>
-<li><a href="#configuring_shadowed_dependencies">2.5. Configuring Shadowed Dependencies</a></li>
-<li><a href="#filtering_dependencies">2.6. Filtering Dependencies</a></li>
-<li><a href="#controlling_jar_content_merging">2.7. Controlling JAR Content Merging</a></li>
-<li><a href="#relocating_packages">2.8. Relocating Packages</a></li>
+<li><a href="#configuring_chapter_chapter">2.1. Configuring chapter chapter</a></li>
+<li><a href="#chapter_chapter_chapter_3">2.2. chapter chapter chapter</a></li>
+</ul>
+</li>
+<li><a href="#change_log">3. Change Log</a></li>
+<li><a href="#about_this_project">4. About This Project</a>
+<ul class="sectlevel2">
+<li><a href="#maintainers">4.1. Maintainers</a></li>
+<li><a href="#contributors">4.2. Contributors</a></li>
 </ul>
 </li>
 </ul>
@@ -616,16 +617,13 @@ table.CodeRay td.code>pre{padding:0}
         jcenter()
     }
     dependencies {
-        classpath <span class="string"><span class="delimiter">'</span><span class="content">com.github.jengelman.gradle.plugins:shadow:1.21.0-develop-SNAPSHOT</span><span class="delimiter">'</span></span>
+        classpath <span class="string"><span class="delimiter">'</span><span class="delimiter">'</span></span>
     }
 }
 
-apply <span class="key">plugin</span>: <span class="string"><span class="delimiter">'</span><span class="content">com.github.johnrengelman.shadow</span><span class="delimiter">'</span></span>
+apply <span class="key">plugin</span>: <span class="string"><span class="delimiter">'</span><span class="delimiter">'</span></span>
 apply <span class="key">plugin</span>: <span class="string"><span class="delimiter">'</span><span class="content">java</span><span class="delimiter">'</span></span></code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>Alternatively, the Gradle Plugin syntax can be used:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1. table</caption>
@@ -659,726 +657,69 @@ apply <span class="key">plugin</span>: <span class="string"><span class="delimit
 </tr>
 </tbody>
 </table>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">plugins {
-  id <span class="string"><span class="delimiter">'</span><span class="content">com.github.johnrengelman.shadow</span><span class="delimiter">'</span></span> version <span class="string"><span class="delimiter">'</span><span class="content">1.21.0-develop-SNAPSHOT</span><span class="delimiter">'</span></span>
-  id <span class="string"><span class="delimiter">'</span><span class="content">java</span><span class="delimiter">'</span></span>
-}</code></pre>
 </div>
-</div>
+<div class="sect2">
+<h3 id="chapter_chapter_chapter">1.3. chapter chapter chapter</h3>
 <div class="paragraph">
-<p>Shadow is a reactive plugin.
-This means that applying Shadow by itself will perform no configuration on your project.
-Instead, Shadow <em>reacts</em> to the application of other plugins to decorate the project.</p>
-</div>
-<div class="paragraph">
-<p>This means, that for most users, the <code>java</code> or <code>groovy</code> plugins must be <em>explicitly</em> applied
-to have the desired effect.</p>
+<p>chapter chapter chapter</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="default_java_groovy_tasks">1.3. Default Java/Groovy Tasks</h3>
+<h3 id="chapter_chapter_chapter_2">1.4. chapter chapter chapter</h3>
 <div class="paragraph">
-<p>In the presence of the <code>java</code> or <code>groovy</code> plugins, Shadow will automatically configure the
-following behavior:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Adds a <code>shadowJar</code> task to the project.</p>
-</li>
-<li>
-<p>Adds a <code>shadow</code> configuration to the project.</p>
-</li>
-<li>
-<p>Configures the <code>shadowJar</code> task to include all sources from the project&#8217;s <code>main</code> sourceSet.</p>
-</li>
-<li>
-<p>Configures the <code>shadowJar</code> task to bundle all dependencies from the <code>runtime</code> configuration.</p>
-</li>
-<li>
-<p>Configures the <em>classifier</em> attribute of the <code>shadowJar</code> task to be <code>'all'</code> .</p>
-</li>
-<li>
-<p>Configures the <code>shadowJar</code> task to generate a <code>Manifest</code> with:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Inheriting all configuration from the standard <code>jar</code> task.</p>
-</li>
-<li>
-<p>Adds a <code>Class-Path</code> attribute to the <code>Manifest</code> that appends all dependencies from the <code>shadow</code> configuration</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Configures the <code>shadowJar</code> task to <em>exclude</em> any JAR index or cryptographic signature files matching the following patterns:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>META-INF/INDEX.LIST</code></p>
-</li>
-<li>
-<p><code>META-INF/*.SF</code></p>
-</li>
-<li>
-<p><code>META-INF/*.DSA</code></p>
-</li>
-<li>
-<p><code>META-INF/*.RSA</code></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Creates and registers the <code>shadow</code> component in the project (used for integrating with <code>maven-publish</code>).</p>
-</li>
-<li>
-<p>Configures the <code>uploadShadow</code> task (as part of the <code>maven</code> plugin) with the following behavior:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Removes the <code>compile</code> and <code>runtime</code> configurations from the <code>pom.xml</code> file mapping.</p>
-</li>
-<li>
-<p>Adds the <code>shadow</code> configuration to the <code>pom.xml</code> file as <code>RUNTIME</code> scope.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="shadowing_gradle_plugins">1.4. Shadowing Gradle Plugins</h3>
-<div class="paragraph">
-<p>Starting with v2.0.0, Shadow is capable of automatically configuring package relocation for your dependencies.
-This is useful especially when building Gradle plugins where you want your dependencies to not conflict with versions
-provided by the Gradle runtime.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath <span class="string"><span class="delimiter">'</span><span class="content">com.github.jengelman.gradle.plugins:shadow:1.21.0-develop-SNAPSHOT</span><span class="delimiter">'</span></span>
-    }
-}
-
-apply <span class="key">plugin</span>: <span class="string"><span class="delimiter">'</span><span class="content">com.github.johnrengelman.shadow-plugin</span><span class="delimiter">'</span></span>
-apply <span class="key">plugin</span>: <span class="string"><span class="delimiter">'</span><span class="content">java</span><span class="delimiter">'</span></span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Alternatively, the Gradle Plugin syntax can be used:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">plugins {
-  id <span class="string"><span class="delimiter">'</span><span class="content">com.github.johnrengelman.shadow-plugin</span><span class="delimiter">'</span></span> version <span class="string"><span class="delimiter">'</span><span class="content">1.21.0-develop-SNAPSHOT</span><span class="delimiter">'</span></span>
-  id <span class="string"><span class="delimiter">'</span><span class="content">java</span><span class="delimiter">'</span></span>
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Applying the <code>shadow-plugin</code> plugin is the same as applying the standard <code>shadow</code> plugin with the additional creation
-of the <code>configureRelocationShadowJar</code> task.
-This task runs before the <code>shadowJar</code> task and scans the packages presention the dependencies that will be merged into
-the final jar and automatically configures relocation for them.
-By default the tasks relocates all packages to the <code>shadow.</code> prefix. For example <code>org.jdom2.JDOMException</code> becomes
-<code>shadow.org.jdom2.JDOMException</code></p>
-</div>
-<div class="paragraph">
-<p>For more details see the sectinon <a href="#Using Shadow to Package Gradle Plugins">[Using Shadow to Package Gradle Plugins]</a></p>
+<p>chapter chapter chapter</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="configuring_shadow">2. Configuring Shadow</h2>
+<h2 id="configuring_chapter">2. Configuring chapter</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <a href="api/com/github/softcake/gradle-java-template//tasks/ShadowJar.html"><code>ShadowJar</code></a> task type extends from Gradle&#8217;s
-<a href="https://docs.gradle.org/current/dsl/org.gradle.api.tasks.bundling.Jar.html"><code>Jar</code></a> type.
-This means that all attributes and methods available on <code>Jar</code> are also available on
-<a href="api/com/github/softcake/gradle-java-template//tasks/ShadowJar.html"><code>ShadowJar</code></a>.
-Refer the <em>Gradle User Guide</em> for <a href="https://docs.gradle.org/current/dsl/org.gradle.api.tasks.bundling.Jar.html">Jar</a> for
-details.</p>
+<p>chapter</p>
 </div>
 <div class="sect2">
-<h3 id="configuring_output_name">2.1. Configuring Output Name</h3>
+<h3 id="configuring_chapter_chapter">2.1. Configuring chapter chapter</h3>
 <div class="paragraph">
-<p>Shadow configures the default <code>shadowJar</code> task to set the output JAR&#8217;s <code>destinationDir</code>, <code>baseName</code>, <code>appendix</code>,
-<code>version</code>, and <code>extension</code> to the same default values as Gradle does for all <code>Jar</code> tasks.
-Additionally, it configures the <code>classifier</code> to be <code>all</code>.</p>
-</div>
-<div class="paragraph">
-<p>If working with a Gradle project with the name <code>myApp</code> and version <code>1.0</code>, the default <code>shadowJar</code> task will output a
-file at: <code>build/libs/myApp-1.0-all.jar</code></p>
-</div>
-<div class="paragraph">
-<p>As with all <code>Jar</code> tasks in Gradle, these values can be overridden:</p>
-</div>
-<div class="listingblock">
-<div class="title">Output to <code>build/libs/shadow.jar</code></div>
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="comment">/*
- * Copyright 2017 softcake.org.
- *
- * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */</span>
-
-<span class="keyword">package</span> <span class="namespace">org.softcake.one</span>;
-
-<span class="comment">/**
- * @author René Neubert.
- */</span>
-<span class="directive">public</span> <span class="directive">final</span> <span class="type">class</span> <span class="class">DocExampleTest</span> {
-
-    <span class="directive">private</span> DocExampleTest() {
-
-    }
-
-    <span class="directive">public</span> <span class="directive">static</span> <span class="type">void</span> main(<span class="directive">final</span> <span class="predefined-type">String</span><span class="type">[]</span> args) {
-
-        One one = <span class="keyword">new</span> One(<span class="string"><span class="delimiter">&quot;</span><span class="content">Hello World</span><span class="delimiter">&quot;</span></span>);
-        <span class="predefined-type">System</span>.out.println(one.getName());
-
-    }
-}</code></pre>
-</div>
+<p>chapter chapter</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configuring_the_runtime_classpath">2.2. Configuring the Runtime Classpath</h3>
+<h3 id="chapter_chapter_chapter_3">2.2. chapter chapter chapter</h3>
 <div class="paragraph">
-<p>Each Java JAR file contains a manifest file that provides meta data about the contents of the JAR file itself.
-When using a shadowed JAR file as an executable JAR, it is assumed that all necessary runtime classes are contained
-within the JAR itself.
-There may be situations where the desire is to <strong>not</strong> bundle select dependencies into the shadowed JAR file but
-they are still required for runtime execution.</p>
-</div>
-<div class="paragraph">
-<p>In these scenarios, Shadow creates a <code>shadow</code> configuration to declare these dependencies.
-Dependencies added to the <code>shadow</code> configuration are <strong>not</strong> bundled into the output JAR.</p>
-</div>
-<div class="paragraph">
-<p>Additionally, Shadow automatically configures the manifest of the <code>shadowJar</code> task to contain a <code>Class-Path</code> entry
-in the JAR manifest.
-The value of the <code>Class-Path</code> entry is the name of all dependencies resolved in the <code>shadow</code> configuration
-for the project.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java">Unresolved directive in <span class="integer">10</span>-configuring.adoc - include::../../test/java/org/softcake/one/OneClassTest.java[tags=shadowConfig]</code></pre>
+<p>chapter chapter chapter</p>
 </div>
 </div>
-<div class="paragraph">
-<p>Inspecting the <code>META-INF/MANIFEST.MF</code> entry in the JAR file will reveal the following attribute:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="property">Class-Path: junit-3.8.2.jar</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>When deploying a shadowed JAR as an execution JAR, it is important to note that any non-bundled runtime dependencies
-<strong>must</strong> be deployed in the location specified in the <code>Class-Path</code> entry in the manifest.</p>
+<div class="sect1">
+<h2 id="change_log">3. Change Log</h2>
+<div class="sectionbody">
+<h3 id="v2_0_0_unreleased" class="discrete">v2.0.0 (Unreleased)</h3>
+<h3 id="v1_0_0" class="discrete">v1.0.0</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="about_this_project">4. About This Project</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="maintainers">4.1. Maintainers</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/softcake">Rene Neubert</a></p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configuring_the_jar_manifest">2.3. Configuring the JAR Manifest</h3>
-<div class="paragraph">
-<p>Beyond the autmatic configuration of the <code>Class-Path</code> entry, the <code>shadowJar</code> manifest is configured in a number of ways.
-First, the manifest for the <code>shadowJar</code> task is configured to <em>inherit</em> from the manifest of the standard <code>jar</code> task.
-This means that any configuration performed on the <code>jar</code> task will propagate to the <code>shadowJar</code> tasks.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java">Unresolved directive in <span class="integer">10</span>-configuring.adoc - include::../../test/java/org/softcake/one/OneClassTest.java[tags=rename]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Inspecting the <code>META-INF/MANIFEST.MF</code> entry in the JAR file will revel the following attribute:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="property">Class-Path: /libs/a.jar</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If it is desired to inherit a manifest from a JAR task other than the standard <code>jar</code> task, the <code>inheritFrom</code> methods
-on the <code>shadowJar.manifest</code> object can be used to configure the upstream.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">task testJar(<span class="key">type</span>: Jar) {
-  manifest {
-    attributes <span class="string"><span class="delimiter">'</span><span class="content">Description</span><span class="delimiter">'</span></span>: <span class="string"><span class="delimiter">'</span><span class="content">This is an application JAR</span><span class="delimiter">'</span></span>
-  }
-}
-
-shadowJar {
-  manifest {
-    inheritFrom project.tasks.testJar.manifest
-  }
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="filtering_shadow_jar_contents">2.4. Filtering Shadow Jar Contents</h3>
-<div class="paragraph">
-<p>The final contents of a shadow JAR can be filtered using the <code>exclude</code> and <code>include</code> methods inherited from Gradle&#8217;s
-<code>Jar</code> task type.</p>
-</div>
-<div class="paragraph">
-<p>Refer to the <a href="https://docs.gradle.org/current/dsl/org.gradle.api.tasks.bundling.Jar.html">Jar</a> documentation for details
-on the various versions of the methods and their behavior.</p>
-</div>
-<div class="paragraph">
-<p>When using <code>exclude</code>/<code>include</code> with a <code>ShadowJar</code> task, the resulting copy specs are applied to the <em>final</em> JAR
-contents.
-This means that, the configuration is applied to the individual files from both the project source set or <em>any</em>
-of the dependencies to be merged.</p>
-</div>
-<div class="listingblock">
-<div class="title">Exclude a file from Shadow Jar</div>
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java">Unresolved directive in <span class="integer">11</span>-filtering-contents.adoc - include::../../test/java/org/softcake/one/OneClassTest.java[tags=excludeFile]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Excludes and includes can be combined just like a noraml <code>Jar</code> task, with <code>excludes</code> taking precendence over <code>includes</code>.
-Additionally, ANT style patterns can be used to match multiple files.</p>
-</div>
-<div class="listingblock">
-<div class="title">Configuring output using ANT patterns</div>
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java">Unresolved directive in <span class="integer">11</span>-filtering-contents.adoc - include::../../test/java/org/softcake/one/OneClassTest.java[tags=excludeOverInclude]</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="configuring_shadowed_dependencies">2.5. Configuring Shadowed Dependencies</h3>
-<div class="paragraph">
-<p>Shadow configures the default <code>shadowJar</code> task to merge all dependencies from the project&#8217;s <code>runtime</code> configuration
-into the final JAR.
-The configurations to source dependencies from for the merging can be configured using the <code>configurations</code> property
-of the <a href="api/com/github/softcake/gradle-java-template//tasks/ShadowJar.html"><code>ShadowJar</code></a> task type.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">shadowJar {
-  configurations = [project.configurations.compile]
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The above code sample would configure the <code>shadowJar</code> task to merge depdencies from only the <code>compile</code> configuration.
-This means any dependency declared in the <code>runtime</code> configuration would be <strong>not</strong> be included in the final JAR.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Note the literal use of <code>project.configurations</code> when setting the <code>configurations</code> attribute of a
-<a href="api/com/github/softcake/gradle-java-template//tasks/ShadowJar.html"><code>ShadowJar</code></a> task.
-This is <strong>required</strong>. It maybe be tempting to specify <code>configurations = [configurations.compile]</code> but this will not
-have the intended effect, as <code>configurations.compile</code> will try to delegate to the <code>configurations</code> property of the
-the <a href="api/com/github/softcake/gradle-java-template//tasks/ShadowJar.html"><code>ShadowJar</code></a> task instead of the <code>project</code></p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="filtering_dependencies">2.6. Filtering Dependencies</h3>
-<div class="paragraph">
-<p>Individual dependencies can be filtered from the final JAR by using the <code>dependencies</code> block of a
-<a href="api/com/github/softcake/gradle-java-template//tasks/ShadowJar.html"><code>ShadowJar</code></a> task.
-Dependency filtering does <strong>not</strong> apply to transitive dependencies.
-That is, excluding a dependency does not exclude any of its dependencies from the final JAR.</p>
-</div>
-<div class="paragraph">
-<p>The <code>dependency</code> blocks provides a number of methods for resolving dependencies using the notations familiar from
-Gradle&#8217;s <code>configurations</code> block.</p>
-</div>
-<div class="listingblock">
-<div class="title">Exclude an Module Dependency</div>
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java">Unresolved directive in <span class="integer">12</span>-controlling-dependencies.adoc - include::../../test/java/org/softcake/one/OneClassTest.java[tags=excludeDep]</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Exclude a Project Dependency</div>
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java">Unresolved directive in <span class="integer">12</span>-controlling-dependencies.adoc - include::../../test/java/org/softcake/one/OneClassTest.java[tags=excludeProject]</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>While not being able to filter entire transitive dependency graphs might seem like an oversight, it is necessary
-because it would not be possible to intelligently determine the build author&#8217;s intended results when there is a
-common dependency between two 1st level dependencies when one is excluded and the other is not.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="sect3">
-<h4 id="using_regex_patterns_to_filter_dependencies">2.6.1. Using Regex Patterns to Filter Dependencies</h4>
-<div class="paragraph">
-<p>Dependencies can be filtered using regex patterns.
-Coupled with the <code>&lt;group&gt;:&lt;artifact&gt;:&lt;version&gt;</code> notation for dependencies, this allows for excluding/including
-using any of these individual fields.</p>
-</div>
-<div class="listingblock">
-<div class="title">Exclude Any Version of a Dependency</div>
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">Unresolved directive <span class="keyword">in</span> <span class="integer">12</span>-controlling-dependencies.adoc - <span class="key">include</span>::..<span class="regexp"><span class="delimiter">/</span><span class="content">..</span><span class="delimiter">/</span></span>test/java/org/softcake/one/FilteringSpec.groovy[tags=excludeDepWildcard]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Any of the individual fields can be safely absent and will function as though a wildcard was specified.</p>
-</div>
-<div class="listingblock">
-<div class="title">Ignore Dependency Version</div>
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">shadowJar {
-  dependencies {
-    exclude(dependency(<span class="string"><span class="delimiter">'</span><span class="content">shadow:d</span><span class="delimiter">'</span></span>))
-  }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The above code snippet is functionally equivalent to the previous example.</p>
-</div>
-<div class="paragraph">
-<p>This same patten can be used for any of the dependency notation fields.</p>
-</div>
-<div class="listingblock">
-<div class="title">Ignoring An Artifact Regardless of Group</div>
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">shadowJar {
-  dependencies {
-    exclude(dependency(<span class="string"><span class="delimiter">'</span><span class="content">:d:1.0</span><span class="delimiter">'</span></span>))
-  }
-}</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Excluding All Artifacts From Group</div>
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">shadowJar {
-  dependencies {
-    exclude(dependency(<span class="string"><span class="delimiter">'</span><span class="content">shadow::1.0</span><span class="delimiter">'</span></span>))
-  }
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="programmatically_selecting_dependencies_to_filter">2.6.2. Programmatically Selecting Dependencies to Filter</h4>
-<div class="paragraph">
-<p>If more complex decisions are needed to select the dependencies to be included, the
-<a href="api/com/github/softcake/gradle-java-template//tasks/ShadowJar.html#dependencies(Action&lt;DependencyFilter&gt;)"><code>dependencies</code></a> block provides a
-method that accepts a <code>Closure</code> for selecting dependencies.</p>
-</div>
-<div class="listingblock">
-<div class="title">Selecting Dependencies to Filter With a Spec</div>
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">Unresolved directive <span class="keyword">in</span> <span class="integer">12</span>-controlling-dependencies.adoc - <span class="key">include</span>::..<span class="regexp"><span class="delimiter">/</span><span class="content">..</span><span class="delimiter">/</span></span>test/java/org/softcake/one/FilteringSpec.groovy[tags=excludeSpec]</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="controlling_jar_content_merging">2.7. Controlling JAR Content Merging</h3>
-<div class="paragraph">
-<p>Shadow allows for customizing the process by which the output JAR is generated through the
-<a href="api/com/github/softcake/gradle-java-template//transformers/Transformer.html"><code>Transformer</code></a> interface.
-This is a concept that has been carried over from the original Maven Shade implementation.
-A <a href="api/com/github/softcake/gradle-java-template//transformers/Transformer.html"><code>Transformer</code></a> is invoked for each entry in the JAR before being written to
-the final output JAR.
-This allows a <a href="api/com/github/softcake/gradle-java-template//transformers/Transformer.html"><code>Transformer</code></a> to determine if it should process a particular
-entry and apply any modifications beforewriting the stream to the output.</p>
-</div>
-<div class="listingblock">
-<div class="title">Adding a Transformer</div>
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">shadowJar {
-  transform(MyTransformer.class)
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Additionally, a <code>Transformer</code> can accept a <code>Closure</code> to configure the provided <code>Transformer</code>.</p>
-</div>
-<div class="listingblock">
-<div class="title">Configuring a Transformer</div>
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">shadowJar {
-  transform(MyTransformer.class) {
-    enable = <span class="predefined-constant">true</span>
-  }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>An instantiated instance of a <code>Transformer</code> can also be provided.</p>
-</div>
-<div class="listingblock">
-<div class="title">Adding a Transformer Instance</div>
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">shadowJar {
-  transform(<span class="keyword">new</span> MyTransformer(<span class="key">enabled</span>: <span class="predefined-constant">true</span>))
-}</code></pre>
-</div>
-</div>
-<div class="sect3">
-<h4 id="merging_service_descriptor_files">2.7.1. Merging Service Descriptor Files</h4>
-<div class="paragraph">
-<p>Java libraries often contain service descriptors files in the <code>META-INF/services</code> directory of the JAR.
-A service descriptor typically contains a line delimited list of classes that are supported for a particular <em>service</em>.
-At runtime, this file is read and used to configure library or application behavior.</p>
-</div>
-<div class="paragraph">
-<p>Multiple dependencies may use the same service descriptor file name.
-In this case, it is generally desired to merge the content of each instance of the file into a single output file.
-The <a href="api/com/github/softcake/gradle-java-template//transformers/ServiceFileTransformer.html"><code>ServiceFileTransformer</code></a> class is used to perform this merging.
-By default, it will merge each copy of a file under <code>META-INF/services</code> into a single file in the output JAR.</p>
-</div>
-<div class="listingblock">
-<div class="title">Merging Service Files</div>
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">shadowJar {
-  mergeServiceFiles()
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The above code snippet is a convenience syntax for calling
-<a href="api/com/github/softcake/gradle-java-template//tasks/ShadowJar.html#transform(Class&lt;? extends Transformer&gt;)"><code>transform(ServiceFileTransformer.class)</code></a>.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Groovy Extension Module descriptor files (located at <code>META-INF/services/org.codehaus.groovy.runtime.ExtensionModule</code>)
-are ignored by the <a href="api/com/github/softcake/gradle-java-template//transformers/ServiceFileTransformer.html"><code>ServiceFileTransformer</code></a>.
-This is due to these files having a different syntax than standard service descriptor files.
-Use the <a href="api/com/github/softcake/gradle-java-template//tasks/ShadowJar.html#mergeGroovyExtensionModules()"><code>mergeGroovyExtensionModules()</code></a> method to merge
-these files if your dependencies contain them.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="sect4">
-<h5 id="configuring_the_location_of_service_descriptor_files">Configuring the Location of Service Descriptor Files</h5>
-<div class="paragraph">
-<p>By default the <a href="api/com/github/softcake/gradle-java-template//transformers/ServiceFileTransformer.html"><code>ServiceFileTransformer</code></a> is configured to merge
-files in <code>META-INF/services</code>.
-This directory can be overridden to merge descriptor files in a different location.</p>
-</div>
-<div class="listingblock">
-<div class="title">Merging Service Files in a Specific Directory</div>
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">shadowJar {
-  mergeServiceFiles {
-    path = <span class="string"><span class="delimiter">'</span><span class="content">META-INF/custom</span><span class="delimiter">'</span></span>
-  }
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="excluding_including_specific_service_descriptor_files_from_merging">Excluding/Including Specific Service Descriptor Files From Merging</h5>
-<div class="paragraph">
-<p>The <a href="api/com/github/softcake/gradle-java-template//transformers/ServiceFileTransformer.html"><code>ServiceFileTransformer</code></a> class supports specifying specific
-files to include or exclude from merging.</p>
-</div>
-<div class="listingblock">
-<div class="title">Excluding a Service Descriptor From Merging</div>
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">shadowJar {
-  mergeServiceFiles {
-    exclude <span class="string"><span class="delimiter">'</span><span class="content">META-INF/services/com.acme.*</span><span class="delimiter">'</span></span>
-  }
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="merging_groovy_extension_modules">2.7.2. Merging Groovy Extension Modules</h4>
-<div class="paragraph">
-<p>Shadow provides a specific transformer for dealing with Groovy extension module files.
-This is due to their special syntax and how they need to be merged together.
-The <a href="api/com/github/softcake/gradle-java-template//transformers/GroovyExtensionModuleTransformer.html"><code>GroovyExtensionModuleTransformer</code></a> will handle these
-files.
-The <a href="api/com/github/softcake/gradle-java-template//tasks/ShadowJar.html"><code>ShadowJar</code></a> task also provides a short syntax method to add this transformer.</p>
-</div>
-<div class="listingblock">
-<div class="title">Merging Groovy Extension Modules</div>
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">shadowJar {
-  mergeGroovyExtensionModules()
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="appending_text_files">2.7.3. Appending Text Files</h4>
-<div class="paragraph">
-<p>Generic text files can be appended together using the
-<a href="api/com/github/softcake/gradle-java-template//transformers/AppendingTransformer.html"><code>AppendingTransformer</code></a>.
-Each file is appended using new lines to separate content.
-The <a href="api/com/github/softcake/gradle-java-template//tasks/ShadowJar.html"><code>ShadowJar</code></a> task provides a short syntax method of
-<a href="api/com/github/softcake/gradle-java-template//tasks/ShadowJar.html#append(java.lang.String)"><code>append(String)</code></a> to configure this transformer.</p>
-</div>
-<div class="listingblock">
-<div class="title">Appending a Property File</div>
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">shadowJar {
-  append <span class="string"><span class="delimiter">'</span><span class="content">test.properties</span><span class="delimiter">'</span></span>
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="appending_xml_files">2.7.4. Appending XML Files</h4>
-<div class="paragraph">
-<p>XML files require a special transformer for merging.
-The <a href="api/com/github/softcake/gradle-java-template//transformers/XmlAppendingTransformer.html"><code>XmlAppendingTransformer</code></a> reads each XML document and merges
-each root element into a single document.
-There is no short syntax method for the <a href="api/com/github/softcake/gradle-java-template//transformers/XmlAppendingTransformer.html"><code>XmlAppendingTransformer</code></a>.
-It must be added using the <a href="api/com/github/softcake/gradle-java-template//tasks/ShadowJar.html#transform(Class&lt;? extends Transformer&gt;)"><code>transform</code></a> methods.</p>
-</div>
-<div class="listingblock">
-<div class="title">Appending a XML File</div>
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">shadowJar {
-  tranform(XmlAppendingTransformer.class) {
-    resource = <span class="string"><span class="delimiter">'</span><span class="content">properties.xml</span><span class="delimiter">'</span></span>
-  }
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="relocating_packages">2.8. Relocating Packages</h3>
-<div class="paragraph">
-<p>Shade is capable of scanning a project&#8217;s classes and relocating specific dependencies to a new location.
-This is often required when one of the dependencies is susceptible to breaking changes in versions or
-to classpath pollution in a downstream project.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Google&#8217;s Guava and the ASM library are typical cases where package relocation can come in handy.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Shadow uses the ASM library to modify class byte code to replace the package name and any import
-statements for a class.
-Any non-class files that are stored within a package structure are also relocated to the new location.</p>
-</div>
-<div class="listingblock">
-<div class="title">Relocating a Package</div>
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">Unresolved directive <span class="keyword">in</span> <span class="integer">14</span>-<span class="keyword">package</span>-relocation.adoc - <span class="key">include</span>::..<span class="regexp"><span class="delimiter">/</span><span class="content">..</span><span class="delimiter">/</span></span>test/java/org/softcake/one/RelocationSpec.groovy[tags=relocate]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The code snippet will rewrite the location for any class in the <code>junit.framework</code> to be <code>shadow.junit</code>.
-For example, the class <code>junit.textui.TestRunner</code> becomes <code>shadow.junit.TestRunner</code>.
-In the resulting JAR, the class file is relocated from <code>junit/textui/TestRunner.class</code> to
-<code>shadow/junit/TestRunner.class</code>.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Relocation operates at a package level.
-It is not necessary to specify any patterns for matching, it will operate simply on the prefix
-provided.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Relocation will be applied globally to all instance of the matched prefix.
-That is, it does <strong>not</strong> scope to <em>only</em> the dependencies being shadowed.
-Be specific as possible when configuring relocation as to avoid unintended relocations.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="sect3">
-<h4 id="filtering_relocation">2.8.1. Filtering Relocation</h4>
-<div class="paragraph">
-<p>Specific classes or files can be <code>included</code>/<code>excluded</code> from the relocation operation if necessary.</p>
-</div>
-<div class="listingblock">
-<div class="title">Configuring Filtering for Relocation</div>
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">Unresolved directive <span class="keyword">in</span> <span class="integer">14</span>-<span class="keyword">package</span>-relocation.adoc - <span class="key">include</span>::..<span class="regexp"><span class="delimiter">/</span><span class="content">..</span><span class="delimiter">/</span></span>test/java/org/softcake/one/RelocationSpec.groovy[tags=relocateFilter]</code></pre>
-</div>
-</div>
+<h3 id="contributors">4.2. Contributors</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/ReneNeubert">Rene Neubert</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -1387,7 +728,7 @@ Be specific as possible when configuring relocation as to avoid unintended reloc
 <div id="footer">
 <div id="footer-text">
 Version 1.21.0-develop-SNAPSHOT<br>
-Last updated 2017-02-02 21:38:20 +01:00
+Last updated 2017-02-02 21:52:32 +01:00
 </div>
 </div>
 <script>
