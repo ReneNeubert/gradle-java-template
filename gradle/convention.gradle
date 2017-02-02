@@ -22,6 +22,8 @@ subprojects { project ->
         sourceCompatibility = 1.8
     }
 
+
+    
     if (file("$projectDir").exists()) {
 
         if (project in benchmarkModules) {
@@ -72,3 +74,7 @@ subprojects { project ->
         }
     }
 }
+/*project(':documentation') {
+    apply plugin: 'java'
+    sourceCompatibility = 1.8
+}*/

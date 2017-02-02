@@ -36,16 +36,13 @@ allprojects {project ->
             targetCompatibility = 1.8
         }
 
-        tasks.withType(Test) { task ->
+
+        tasks.withType(Test) {
             group = "verification"
-            task.testLogging.exceptionFormat = 'full'
+            testLogging.exceptionFormat = 'full'
             reports {
                 html.enabled = !project.isCi
                 junitXml.destination = "$buildDir/test-results"
-            }
-
-            jacoco {
-                enabled = true
             }
         }
 
