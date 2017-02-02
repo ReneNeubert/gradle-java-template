@@ -31,7 +31,8 @@ artifactory {
 
         repository {
             repoKey = project.isSnapshot ? 'oss-snapshot-local' : 'oss-release-local'
-
+            username = project.bintrayUser
+            password = project.bintrayKey
         }
 
         defaults {
