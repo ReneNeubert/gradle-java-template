@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+println("${project.group}:${project.name}")
 
 sonarqube {
 
@@ -21,7 +21,7 @@ sonarqube {
     properties {
         property "sonar.host.url", sonarHostUrl
         property "sonar.login", sonarLogin
-        property "sonar.projectKey", "${project.group}:${project.name}"
+        property "sonar.projectKey", "${project.group}"
         property "sonar.projectName", project.name
         property "sonar.projectVersion", project.version.toString()
         property "sonar.projectDescription", project.description
@@ -37,7 +37,7 @@ sonarqube {
 }
 
 
-//rootProject.tasks["sonarqube"].dependsOn jacoco
+
 subprojects {project ->
 
     sonarqube {
