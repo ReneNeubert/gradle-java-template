@@ -30,7 +30,7 @@ checkstyle {
 }
 
 tasks.withType(Checkstyle) {
-    enabled = true //System.properties.containsKey('checkstyle')
+    enabled = checkCodeQuality
     group = qualityGroup
     reports {
         xml.enabled = !project.isCi
@@ -47,10 +47,10 @@ findbugs {
 }
 
 tasks.withType(FindBugs) {
-    enabled = false //System.properties.containsKey('findbugs')
+    enabled = checkCodeQuality
     group = qualityGroup
     reports {
-        xml.enabled = !project.isCi
+        xml.enabled = false
         html.enabled = !project.isCi
     }
 }
@@ -65,7 +65,7 @@ pmd {
 }
 
 tasks.withType(Pmd) {
-    enabled = name.endsWith('Main') // && System.properties.containsKey('pmd')
+    enabled = name.endsWith('Main') && checkCodeQuality// && System.properties.containsKey('pmd')
     group = qualityGroup
     reports {
         xml.enabled = !project.isCi

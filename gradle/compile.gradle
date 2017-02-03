@@ -36,21 +36,18 @@ allprojects {project ->
             targetCompatibility = 1.8
         }
 
-        tasks.withType(Test) { task ->
+
+        tasks.withType(Test) {
             group = "verification"
-            task.testLogging.exceptionFormat = 'full'
+            testLogging.exceptionFormat = 'full'
             reports {
                 html.enabled = !project.isCi
                 junitXml.destination = "$buildDir/test-results"
             }
-
-            jacoco {
-                enabled = true
-            }
         }
 
         // See: http://docs.oracle.com/javase/8/docs/technotes/tools/windows/javac.html#BHCJCABJ
-        compileJava.options*.compilerArgs = [
+       /* compileJava.options*.compilerArgs = [
                 '-Xlint:cast',
                 '-Xlint:classfile',
                 '-Xlint:deprecation',
@@ -93,10 +90,10 @@ allprojects {project ->
                 '-Xlint:-options',
                 '-Xlint:-overrides'
         ]
-
-        compileTestJava {
+*/
+       /* compileTestJava {
             options.compilerArgs += '-parameters'
-        }
+        }*/
 
     }
 }

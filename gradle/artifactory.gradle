@@ -31,9 +31,11 @@ artifactory {
 
         repository {
             repoKey = project.isSnapshot ? 'oss-snapshot-local' : 'oss-release-local'
-
+            username = project.bintrayUser
+            password = project.bintrayKey
         }
 
+        //noinspection GroovyAssignabilityCheck
         defaults {
             publications('nebula')
         }

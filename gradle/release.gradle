@@ -21,6 +21,7 @@ task aggregateJavadocs(type: Javadoc) {
     onlyIf {
         !(project.isSnapshot && project.isCi)
     }
+
     title = "Softcake ${project.name} ${version} "
     description = 'Aggregates Javadoc API documentation of all subprojects.'
     group = JavaBasePlugin.DOCUMENTATION_GROUP
@@ -109,3 +110,4 @@ task createAllJars {
     group 'Jars'
     dependsOn aggregateJar, aggregateJavadocJar, aggregateSourcesJar
 }
+

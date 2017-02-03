@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 softcake.org.
+ * Copyright 2017 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,27 @@
  * limitations under the License.
  */
 
-rootProject.name = 'gradle-java-template'
+package example;
 
-include 'gradle-java-template-core', 'gradle-java-template-api', 'example'
-include 'documentation'
+import org.softcake.one.One;
+
+import com.google.common.base.Preconditions;
+
+/**
+ * @author René Neubert.
+ */
+public final class DocExampleTest {
+
+    private DocExampleTest() {
+
+    }
+
+    // tag::example[]
+    public static void main(final String[] args) {
+
+        One one = new One("hello");
+        Preconditions.checkNotNull("Hello");
+
+    }
+    // end::example[]
+}

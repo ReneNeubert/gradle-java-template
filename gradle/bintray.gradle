@@ -39,7 +39,9 @@ bintray {
         publicDownloadNumbers = true
         licenses = ['Apache-2.0']
 
+        //noinspection GroovyAssignabilityCheck
         version {
+
             released = new Date()
             name = project.version.toString()
             vcsTag = project.version.toString()
