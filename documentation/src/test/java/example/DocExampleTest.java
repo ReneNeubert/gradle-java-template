@@ -18,6 +18,8 @@ package example;
 
 import org.softcake.one.One;
 
+import com.google.common.base.Preconditions;
+
 /**
  * @author René Neubert.
  */
@@ -26,11 +28,12 @@ public final class DocExampleTest {
     private DocExampleTest() {
 
     }
+
     // tag::example[]
     public static void main(final String[] args) {
 
-        One one = new One("Hello World");
-        System.out.println(one.getName());
+        One one = new One("hello");
+        Preconditions.checkNotNull("Hello");
 
     }
     // end::example[]
