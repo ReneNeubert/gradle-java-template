@@ -25,10 +25,6 @@ githubPages {
     def dir = project(':documentation').buildDir
     pages {
         from "$dir/asciidoc/html5"
-
-        into('api') {
-            from project.tasks.aggregateJavadocs
-        }
     }
 
 }

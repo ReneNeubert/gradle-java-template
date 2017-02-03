@@ -58,8 +58,6 @@ asciidoctor {
         }
     }
 
-    //inputs.files project.sourceSets.test.allSource
-
 }
 
 

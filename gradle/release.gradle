@@ -22,7 +22,6 @@ task aggregateJavadocs(type: Javadoc) {
         !(project.isSnapshot && project.isCi)
     }
 
-    //mustRunAfter ":documentation:asciidoctor"
     title = "Softcake ${project.name} ${version} "
     description = 'Aggregates Javadoc API documentation of all subprojects.'
     group = JavaBasePlugin.DOCUMENTATION_GROUP
