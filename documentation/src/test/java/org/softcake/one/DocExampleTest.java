@@ -29,5 +29,6 @@ public final class DocExampleTest {
 
         One one = new One("Hello World");
         System.out.println(one.getName());
+
     }
 }

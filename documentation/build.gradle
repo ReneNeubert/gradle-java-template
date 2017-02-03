@@ -36,19 +36,21 @@ asciidoctor {
         include 'index.adoc'
     }
     backends = ['html5', 'pdf']
-    outputDir "$rootProject.buildDir/asciidoc"
+    //outputDir "$rootProject.buildDir/asciidoc"
 
-            attributes toc: 'left',
+    attributes toc: 'left',
             'source-highlighter': 'coderay',
             icons: 'font',
             numbered: '',
             idprefix: '',
-            'docinfo1': 'true'
+            'docinfo1': 'true',
+            'testDir': project.sourceSets.test.java.srcDirs[0]
     resources {
         from rootProject.tasks.aggregateJavadocs {
             into 'api'
         }
     }
+
     inputs.files project.sourceSets.test.allSource
 
 

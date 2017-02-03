@@ -22,14 +22,21 @@ githubPages {
         username = project.ext.ghToken
         password = ''
     }
-
+    def dir = project(':documentation').buildDir
     pages {
-        from 'build/asciidoc/html5'
+        from "$dir/asciidoc/html5"
+
         into('api') {
             from project.tasks.aggregateJavadocs
         }
     }
 }
-
+task cleanGhPages(type: Delete) {
+    delete "$buildDir/ghpages"
+    followSymlinks = true
+    mustRunAfter "publishGhPages"
+}
+prepareGhPages.dependsOn ":documentation:asciidoctor"
 publishGhPages.dependsOn ":documentation:asciidoctor"
 publishGhPages.dependsOn aggregateJavadocs
+
