@@ -47,7 +47,7 @@ allprojects {project ->
         }
 
         // See: http://docs.oracle.com/javase/8/docs/technotes/tools/windows/javac.html#BHCJCABJ
-        compileJava.options*.compilerArgs = [
+       /* compileJava.options*.compilerArgs = [
                 '-Xlint:cast',
                 '-Xlint:classfile',
                 '-Xlint:deprecation',
@@ -90,10 +90,10 @@ allprojects {project ->
                 '-Xlint:-options',
                 '-Xlint:-overrides'
         ]
-
-        compileTestJava {
+*/
+       /* compileTestJava {
             options.compilerArgs += '-parameters'
-        }
+        }*/
 
     }
 }
