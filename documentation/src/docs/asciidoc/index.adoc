@@ -1,37 +1,23 @@
 :src: ../../../gradle-java-template-core/src
-:tests: ../../test/java/org/softcake/one
+:testDir: ../../test/java/
 :api: api/com/github/softcake/gradle-java-template/
 :docinfo1:
 ifdef::env-github[]
 :note-caption: :information-source:
 endif::[]
 
-= Gradle Java Template User Guide & Examples
+= {projectName} User Guide & Examples
 Rene Neubert - @softcake.org
 :revnumber: {project-version}
 
 link:api/index.html[API Docs]
 
-include::00-intro.adoc[]
+include::intro.adoc[]
 
-include::10-configuring.adoc[]
+include::configuring.adoc[]
 
-////
+include::examples.adoc[]
 
-include::20-custom-tasks.adoc[]
+include::changes.adoc[]
 
-include::30-application-plugin.adoc[]
-
-include::40-publishing.adoc[]
-
-include::50-multi-project-builds.adoc[]
-
-include::60-shadowing-plugins.adoc[]
-
-
-
-
-////
-include::90-changes.adoc[]
-
-include::99-about.adoc[]
+include::about.adoc[]

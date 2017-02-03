@@ -16,6 +16,7 @@
 
 apply plugin: 'java'
 description = "Module documentation"
+
 dependencies {
     compile libraries.guava
     testCompile test_libraries.junit
@@ -31,20 +32,26 @@ asciidoctorj {
 }
 
 asciidoctor {
+    dependsOn rootProject.tasks.aggregateJavadocs
     sourceDir = new File("$projectDir/src/docs/asciidoc")
     sources {
         include 'index.adoc'
     }
     backends = ['html5', 'pdf']
-    //outputDir "$rootProject.buildDir/asciidoc"
 
+    //noinspection GroovyAssignabilityCheck
     attributes toc: 'left',
-            'source-highlighter': 'coderay',
-            icons: 'font',
-            numbered: '',
-            idprefix: '',
-            'docinfo1': 'true',
-            'testDir': project.sourceSets.test.java.srcDirs[0]
+               'source-highlighter': 'highlightjs',
+               'highlightjs-theme': 'solarized_dark',
+               'stylesheet': "$projectDir/src/docs/asciidoc/stylesheets/riak.css",
+               icons: 'font',
+               numbered: '',
+               idprefix: '',
+               'docinfo1': 'true',
+               'testDir': project.sourceSets.test.java.srcDirs[0],
+               'projectName': rootProject.description
+
+    //noinspection GroovyAssignabilityCheck
     resources {
         from rootProject.tasks.aggregateJavadocs {
             into 'api'
@@ -52,8 +59,6 @@ asciidoctor {
     }
 
     inputs.files project.sourceSets.test.allSource
-
-
 }
-project.tasks.asciidoctor.dependsOn rootProject.tasks.aggregateJavadocs
+
 

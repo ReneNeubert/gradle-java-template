@@ -35,6 +35,7 @@ artifactory {
             password = project.bintrayKey
         }
 
+        //noinspection GroovyAssignabilityCheck
         defaults {
             publications('nebula')
         }

@@ -73,7 +73,8 @@ ext {
             degraph             : '0.1.4',
             buildscan           : '1.4',
             nebula_publishing   : '4.9.1',
-
+            asciidoctor         : '1.5.3',
+            asciidoctorj_pdf    : '1.5.0-alpha.11',
     ]
 
     libraries = [
@@ -107,6 +108,7 @@ ext {
             degraph             : "de.schauderhaft.degraph:degraph-check:${plugin_versions.degraph}",
             buildscan           : "com.gradle:build-scan-plugin:${plugin_versions.buildscan}",
             nebula_publishing   : "com.netflix.nebula:nebula-publishing-plugin:${plugin_versions.nebula_publishing}",
-
+            asciidoctor         : "org.asciidoctor:asciidoctor-gradle-plugin:${plugin_versions.asciidoctor}",
+            asciidoctorj_pdf    : "org.asciidoctor:asciidoctorj-pdf:${plugin_versions.asciidoctorj_pdf}",
     ]
 }

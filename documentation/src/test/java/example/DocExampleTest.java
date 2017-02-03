@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 softcake.org.
+ * Copyright 2017 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-package org.softcake.one;
+package example;
+
+import org.softcake.one.One;
 
 /**
  * @author René Neubert.
@@ -24,11 +26,12 @@ public final class DocExampleTest {
     private DocExampleTest() {
 
     }
-
+    // tag::example[]
     public static void main(final String[] args) {
 
         One one = new One("Hello World");
         System.out.println(one.getName());
 
     }
+    // end::example[]
 }

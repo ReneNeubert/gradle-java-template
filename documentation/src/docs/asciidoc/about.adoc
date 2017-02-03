@@ -3,7 +3,7 @@
 
 === Maintainers
 
-* https://github.com/softcake[Rene Neubert]
+* https://github.com/softcake[Softcake Team]
 
 === Contributors
 

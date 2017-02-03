@@ -46,6 +46,7 @@ subprojects { project ->
             String branch = versioning.info.branch
 
             final BRANCH_NAMES_PATTERN = /^(?:release[-\/])?[0-9]+(\.[0-9]+)?\.x$|^(?:feature[-\/]|hotfix[-\/]|develop|master)?$/
+final RELEASE_BRANCH_PATTERN = /^(?:release[-\/])?[0-9]+(\.[0-9]+)?\.x$/
 
             afterEvaluate {
                 if (!project.isSnapshot) {
@@ -64,9 +65,11 @@ subprojects { project ->
                     publish.dependsOn getTasksByName("artifactoryPublish", true)
 
                     if (branch.matches(BRANCH_NAMES_PATTERN)) {
-
                         artifactoryPublish.dependsOn rootProject.getTasksByName("sonarqube", true)
+                    }
 
+                    if (branch.matches(RELEASE_BRANCH_PATTERN)) {
+                        publish.dependsOn rootProject.getTasksByName("publishGhPages", true)
                     }
                 }
 

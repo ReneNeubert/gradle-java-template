@@ -47,7 +47,7 @@ findbugs {
 }
 
 tasks.withType(FindBugs) {
-    enabled = false //System.properties.containsKey('findbugs')
+    enabled = true //System.properties.containsKey('findbugs')
     group = qualityGroup
     reports {
         xml.enabled = !project.isCi
