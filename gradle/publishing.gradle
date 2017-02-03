@@ -30,7 +30,7 @@ uploadArchives.enabled = false
 javadoc {
     options.memberLevel = JavadocMemberLevel.PROTECTED
     options.author = true
-    afterEvaluate{
+    afterEvaluate {
         options.header = "${project.description} of ${rootProject.description}."
     }
     options.addStringOption('Xdoclint:html,syntax,reference', '-quiet')
@@ -48,21 +48,18 @@ tasks.withType(Jar) {
 }
 
 compileJava.doLast {
-    // Enable JAR manifest generation
     rootProject.generateManifest = true
 }
 
 jar {
     onlyIf {
-
         rootProject.generateManifest
-
     }
     manifest {
         attributes(
                 'Created-By': "${System.properties['java.version']} (" +
-                        "${System.properties['java.vendor']} " +
-                        "${System.properties['java.vm.version']})".toString(),
+                              "${System.properties['java.vendor']} " +
+                              "${System.properties['java.vm.version']})".toString(),
                 'Built-By': builtByValue,
                 'Build-Date': project.buildDate,
                 'Build-Time': project.buildTime,
@@ -90,7 +87,7 @@ pom {
     packaging 'jar'
     developers {
         developer {
-           id 'softcake'
+            id 'softcake'
             name 'Rene Neubert'
             email 'rene.neubert@softcake.org'
             roles {

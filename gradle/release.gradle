@@ -87,13 +87,6 @@ task aggregateJar(type: Jar) {
     from publishedModules.sourceSets.main.output.resourcesDir
 
 }
-/*
-artifacts {
-
-    archives aggregateSourcesJar
-    archives aggregateJavadocJar
-    archives aggregateJar
-}*/
 
 tasks.withType(Jar) { task ->
     group 'Jars'
