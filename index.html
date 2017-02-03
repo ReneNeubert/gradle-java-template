@@ -441,6 +441,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#configuring_chapter_chapter">2.1. Configuring chapter chapter</a></li>
 <li><a href="#chapter_chapter_chapter_3">2.2. chapter chapter chapter</a></li>
+<li><a href="#examples">2.3. Examples</a></li>
 </ul>
 </li>
 <li><a href="#change_log">3. Change Log</a></li>
@@ -494,13 +495,14 @@ public final class DocExampleTest {
     private DocExampleTest() {
 
     }
-
+    // tag::example[]
     public static void main(final String[] args) {
 
         One one = new One("Hello World");
         System.out.println(one.getName());
 
     }
+    // end::example[]
 }</code></pre>
 </div>
 </div>
@@ -613,6 +615,20 @@ apply plugin: 'java'</code></pre>
 <p>chapter chapter chapter</p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="examples">2.3. Examples</h3>
+<div class="listingblock">
+<div class="title">Use Tags</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java" data-lang="java">public static void main(final String[] args) {
+
+    One one = new One("Hello World");
+    System.out.println(one.getName());
+
+}</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -630,7 +646,7 @@ apply plugin: 'java'</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://github.com/softcake">Rene Neubert</a></p>
+<p><a href="https://github.com/softcake">Softcake Team</a></p>
 </li>
 </ul>
 </div>
@@ -651,7 +667,7 @@ apply plugin: 'java'</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 1.21.0-develop-SNAPSHOT<br>
-Last updated 2017-02-03 10:19:14 +01:00
+Last updated 2017-02-03 10:36:43 +01:00
 </div>
 </div>
 <script>
