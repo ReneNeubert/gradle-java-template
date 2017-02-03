@@ -28,7 +28,6 @@ ext {
     isTravis = System.getenv("TRAVIS") != null
     isCi = isTravis
     jvm = Jvm.current()
-    javaVersion = JavaVersion.current()
     isWindows = org.gradle.internal.os.OperatingSystem.current().windows
 
     buildDate = new SimpleDateFormat('yyyy-MM-dd').format(buildTimeAndDate)
@@ -49,6 +48,6 @@ ext.normalizeVersion = { versionLiteral ->
     }
 }
 
-if (!javaVersion.java8Compatible) {
+if (!JavaVersion.current().java8Compatible) {
     throw new IllegalStateException("Must be built with Java 8 or higher")
 }

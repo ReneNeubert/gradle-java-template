@@ -46,7 +46,6 @@ subprojects { project ->
             String branch = versioning.info.branch
 
             final BRANCH_NAMES_PATTERN = /^(?:release[-\/])?[0-9]+(\.[0-9]+)?\.x$|^(?:feature[-\/]|hotfix[-\/]|develop|master)?$/
-            final RELEASE_BRANCH_PATTERN = /^(?:release[-\/])?[0-9]+(\.[0-9]+)?\.x$/
 
             afterEvaluate {
                 if (!project.isSnapshot) {
