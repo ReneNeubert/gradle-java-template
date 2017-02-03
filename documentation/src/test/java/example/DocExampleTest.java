@@ -16,6 +16,8 @@
 
 package example;
 
+import org.softcake.one.One;
+
 import com.google.common.base.Preconditions;
 
 /**
@@ -30,6 +32,7 @@ public final class DocExampleTest {
     // tag::example[]
     public static void main(final String[] args) {
 
+        One one = new One("hello");
         Preconditions.checkNotNull("Hello");
 
     }
