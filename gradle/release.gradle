@@ -109,3 +109,4 @@ task createAllJars {
     group 'Jars'
     dependsOn aggregateJar, aggregateJavadocJar, aggregateSourcesJar
 }
+

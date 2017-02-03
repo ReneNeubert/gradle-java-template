@@ -121,3 +121,4 @@ semanticRelease {
     }
 }
 
+updateGithubRelease.dependsOn rootProject.getTasksByName("publishGhPages", true)
