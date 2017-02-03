@@ -58,7 +58,7 @@ asciidoctor {
         }
     }
 
-    inputs.files project.sourceSets.test.allSource
+    //inputs.files project.sourceSets.test.allSource
 
 }
 
