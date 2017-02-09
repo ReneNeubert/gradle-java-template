@@ -1,4 +1,4 @@
-# gradle-java-template
+# gradle-java-template core
 
 [![Bintray](https://img.shields.io/bintray/v/softcake/softcake/gradle-java-template.svg)](https://bintray.com/softcake/softcake/gradle-java-template/_latestVersion)
 [![Maven Central](https://img.shields.io/maven-central/v/org.softcake/gradle-java-template.svg)](https://maven-badges.herokuapp.com/maven-central/org.softcake/gradle-java-template)
