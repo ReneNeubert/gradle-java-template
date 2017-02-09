@@ -25,10 +25,12 @@ import org.junit.Test;
  * @author René Neubert
  */
 public class GuavaTest {
-    @Test
-    public void guava() throws Exception {
 
-        final Guava guava = new Guava("Name");
-        Assert.assertThat(1, is(1));
+    @Test
+    public void guava() {
+
+        final String name = "Name";
+        final Guava guava = new Guava(name);
+        Assert.assertThat(guava.getName(), is(name));
     }
 }

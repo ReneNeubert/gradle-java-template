@@ -27,9 +27,9 @@ import org.junit.Test;
 public class OneClassTest {
 
     @Test
-    public void getNameDefault() throws Exception {
+    public void getNameDefault() {
 
-        final One one = new One();
+        final IOne one = new One();
         Assert.assertThat(one.getName(), is("One"));
     }
 

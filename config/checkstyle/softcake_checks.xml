@@ -45,7 +45,9 @@
         <property name="max" value="1500"/>
         <property name="fileExtensions" value="java"/>
     </module>
-
+    <module name="JavadocPackage">
+        <property name="allowLegacy" value="false"/>
+    </module>
     <module name="TreeWalker">
         <!-- Annotations -->
         <module name="AnnotationLocation">
@@ -152,7 +154,10 @@
         </module>
         <module name="MissingSwitchDefault"/>
         <module name="ModifiedControlVariable"/>
-        <module name="MultipleStringLiterals"/>
+        <module name="MultipleStringLiterals">
+            <property name="allowedDuplicates" value="3"/>
+        </module>
+
         <module name="MultipleVariableDeclarations"/>
         <module name="NestedForDepth">
             <property name="max" value="2"/>
@@ -221,6 +226,7 @@
             <property name="allowedAnnotations" value="Override, Test"/>
             <property name="allowThrowsTagsForSubclasses" value="true"/>
         </module>
+
         <module name="JavadocParagraph"/>
         <module name="JavadocStyle">
             <property name="checkFirstSentence" value="false"/>

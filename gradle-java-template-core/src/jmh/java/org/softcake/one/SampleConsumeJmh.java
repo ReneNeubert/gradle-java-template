@@ -51,7 +51,7 @@ public class SampleConsumeJmh {
      * @throws RunnerException the exception
      */
     public static void main(final String[] args) throws RunnerException {
-        IOne one = new One();
+
         String placeHolder = ".*";
         Options opt = new OptionsBuilder()
                 .include(placeHolder + SampleConsumeJmh.class.getSimpleName() + placeHolder)
