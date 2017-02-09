@@ -25,10 +25,11 @@
     <suppress checks="JavadocMethod" files="(.*Tests*|Mock.*|Test.*|Jmh.*)\.java"/>
     <suppress checks="Javadoc" files=".*[\\/]src[\\/](test|integTest|jmh)[\\/]"/>
     <suppress checks="MagicNumber" files=".*[\\/]src[\\/](test|integTest|jmh)[\\/]"/>
-    <suppress checks="UncommentedMain" files=".*[\\/]src[\\/](jmh)[\\/]"/>
-
+    <suppress checks="UncommentedMain" files=".*[\\/]src[\\/](test|integTest|jmh)[\\/]"/>
+    <suppress checks="JavadocPackage" files=".*[\\/]src[\\/](test|integTest|jmh)[\\/]"/>
     <!--<suppress checks="JavadocType" files="(.*Tests*|Mock.*|Test.*)\.java"/>-->
     <suppress checks="JavadocVariable" files="(.*Tests*|Mock.*|Test.*|Jmh.*)\.java"/>
     <suppress id="MethodNameRegular" files="[\\/]src[\\/](test|integTest|jmh)[\\/].*"/>
     <suppress id="MethodNameTest" files="[\\/]src[\\/]main[\\/].*"/>
 </suppressions>
+

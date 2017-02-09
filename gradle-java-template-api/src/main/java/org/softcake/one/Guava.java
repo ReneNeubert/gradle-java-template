@@ -19,15 +19,30 @@ package org.softcake.one;
 import com.google.common.base.Preconditions;
 
 /**
- * @author René Neubert
+ * @author René Neubert.
  */
 public class Guava {
 
     private String name;
 
+    /**
+     * @param name the name.
+     */
     public Guava(final String name) {
 
         Preconditions.checkNotNull(name);
         this.name = name;
     }
+
+    /**
+     * .
+     *
+     * @return the name
+     */
+    public String getName() {
+
+        return name;
+    }
+
+
 }

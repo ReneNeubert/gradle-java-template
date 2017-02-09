@@ -22,16 +22,15 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * @author Rene Neubert.
+ * @author Rene Neubert
  */
 public class OneIntegTest {
 
     @Test
     public void getNameCustom() {
 
-        final String name = "Custom";
-        final IOne oneOne = new One(name);
-        Assert.assertThat(oneOne.getName(), is(name));
+        final IOne oneOne = new One("Custom");
+        Assert.assertThat(oneOne.getName(), is("Custom"));
     }
 
 }

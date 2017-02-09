@@ -56,7 +56,8 @@ ext {
     sonarQubeModules = publishedModules
     generateManifest = false
     publishArtifacts = true
-    checkCodeQuality = false
+    checkCodeQuality = true
+    ignoreFailures = false
 }
 
 allprojects {

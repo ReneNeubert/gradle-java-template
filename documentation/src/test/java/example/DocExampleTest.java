@@ -33,7 +33,7 @@ public final class DocExampleTest {
     public static void main(final String[] args) {
 
         One one = new One("hello");
-        Preconditions.checkNotNull("Hello");
+        Preconditions.checkNotNull(one);
 
     }
     // end::example[]

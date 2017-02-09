@@ -21,7 +21,7 @@ artifactoryPublish {
     onlyIf {
         project.publishArtifacts == true
     }
-    dependsOn sourceJar, javadocJar
+    dependsOn jar, sourceJar, javadocJar
 }
 
 artifactory {

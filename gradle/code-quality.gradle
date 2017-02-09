@@ -23,7 +23,7 @@ apply plugin: 'checkstyle'
 def checkstyleConfigDir = "$configDir/checkstyle"
 
 checkstyle {
-    ignoreFailures = true
+    ignoreFailures = project.ignoreFailures
     configFile = new File(checkstyleConfigDir, "softcake_checks.xml")
     configProperties.basedir = checkstyleConfigDir
     toolVersion = tool_versions.checkstyle
@@ -42,7 +42,7 @@ apply plugin: 'findbugs'
 
 findbugs {
     effort = 'max'
-    ignoreFailures = true
+    ignoreFailures = project.ignoreFailures
     excludeFilter = new File(configDir, "findbugs/exclude.xml")
 }
 
@@ -58,14 +58,14 @@ tasks.withType(FindBugs) {
 apply plugin: 'pmd'
 
 pmd {
-    ignoreFailures = true
+    ignoreFailures = project.ignoreFailures
     ruleSets = []
     toolVersion = tool_versions.pmd
     ruleSetConfig = resources.text.fromFile(new File(configDir, "pmd/rulesSets.xml"))
 }
 
 tasks.withType(Pmd) {
-    enabled = name.endsWith('Main') && checkCodeQuality// && System.properties.containsKey('pmd')
+    enabled = project.checkCodeQuality// && System.properties.containsKey('pmd')
     group = qualityGroup
     reports {
         xml.enabled = !project.isCi
